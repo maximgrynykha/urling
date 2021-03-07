@@ -1,0 +1,48 @@
+{
+    "name": "ismaxim/urling",
+    "version": "dev-master",
+    "description": "URL parser and constructor in PHP.",
+    "type": "library",
+    "keywords": [
+        "url", 
+        "php",
+        "urling", 
+        "url parser", 
+        "url builder",
+        "url constructor" 
+    ],
+    "homepage": "https://github.com/ismaxim/urling",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxim Grynykha",
+            "email": "gr.gromax@gmail.com",
+            "homepage": "https://github.com/ismaxim",
+            "role": "lead-developer"
+        },
+        {
+            "name": "Yura Labetskiy",
+            "email": "labekzkiy.yurij@gmail.com",
+            "homepage": "https://github.com/labyou",
+            "role": "lead-contributor"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.4",
+        "phpunit/php-invoker": "3.1.x-dev"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ismaxim\\Urling\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { 
+            "Ismaxim\\Urling\\Tests\\": "tests/"
+        }
+    }
+}
