@@ -1,7 +1,7 @@
 {
     "name": "ismaxim/urling",
     "version": "dev-master",
-    "description": "URL parser and constructor in PHP.",
+    "description": "URL parser and constructor in PHP",
     "type": "library",
     "keywords": [
         "url", 
@@ -19,12 +19,6 @@
             "email": "gr.gromax@gmail.com",
             "homepage": "https://github.com/ismaxim",
             "role": "lead-developer"
-        },
-        {
-            "name": "Yura Labetskiy",
-            "email": "labekzkiy.yurij@gmail.com",
-            "homepage": "https://github.com/labyou",
-            "role": "lead-contributor"
         }
     ],
     "minimum-stability": "dev",
@@ -37,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ismaxim\\Urling\\": "src/"
+            "Urling\\": "src/Urling"
         }
     },
     "autoload-dev": {
         "psr-4": { 
-            "Ismaxim\\Urling\\Tests\\": "tests/"
+            "Urling\\": "tests/Urling"
         }
     }
 }
