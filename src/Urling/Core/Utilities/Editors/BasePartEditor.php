@@ -16,7 +16,12 @@ trait BasePartEditor
      */
     public function add(?string $value): ?string
     {
-        $this->_add($value);
+        if (isset($this->value)) {
+            throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
+        }
+
+        $this->value = $value;
+        $this->sanitize($this->value);
 
         return $this->get();
     }
@@ -28,7 +33,7 @@ trait BasePartEditor
      */
     public function get(bool $with_gluing = false): ?string
     {
-        return $this->_get($with_gluing);
+        return ($with_gluing) ? $this->withGluing() : $this->value;
     }
 
     /**
@@ -40,7 +45,8 @@ trait BasePartEditor
      */
     public function update(?string $value): ?string
     {
-        $this->_update($value);
+        $this->delete();
+        $this->add($value);
 
         return $this->get();
     }
@@ -52,35 +58,9 @@ trait BasePartEditor
      */
     public function delete(): ?string
     {
-        $this->_delete();
+        $this->value = null;
 
         return $this->get();
-    }
-
-    protected function _add(?string $value): void
-    {
-        if (isset($this->value)) {
-            throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
-        }
-
-        $this->value = $value;
-        $this->sanitize($this->value);
-    }
-
-    protected function _get(bool $with_gluing = false): ?string
-    {
-        return ($with_gluing) ? $this->withGluing() : $this->value;
-    }
-
-    protected function _update(?string $value): void
-    {
-        $this->_delete();
-        $this->_add($value);
-    }
-
-    protected function _delete(): void
-    {
-        $this->value = null;
     }
 
     protected function sanitize(?string $value): void
