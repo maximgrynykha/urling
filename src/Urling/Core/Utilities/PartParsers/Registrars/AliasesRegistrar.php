@@ -11,19 +11,19 @@ use Urling\PartParsers\QueryParser;
 use Urling\PartParsers\FragmentParser;
 use Urling\PartParsers\PortParser;
 
-trait AliasesRegistrar 
+trait AliasesRegistrar
 {
-    public SchemeParser   $protocol;
-    public HostParser     $hostname;
-    public HostParser     $domain;
-    public UserParser     $username;
-    public PassParser     $password;
-    public PathParser     $routes;
-    public QueryParser    $params;
-    public QueryParser    $attributes;
+    public SchemeParser $protocol;
+    public HostParser $hostname;
+    public HostParser $domain;
+    public UserParser $username;
+    public PassParser $password;
+    public PathParser $routes;
+    public QueryParser $params;
+    public QueryParser $attributes;
     public FragmentParser $anchor;
 
-    private function registerAliases() : void
+    private function registerAliases(): void
     {
         $this->protocol   = $this->scheme;
         $this->hostname   = $this->host;

@@ -13,16 +13,16 @@ use Urling\PartParsers\FragmentParser;
 
 trait ParsersRegistrar
 {
-    public SchemeParser   $scheme;
-    public HostParser     $host;
-    public PortParser     $port;
-    public UserParser     $user;
-    public PassParser     $pass;
-    public PathParser     $path;
-    public QueryParser    $query;
+    public SchemeParser $scheme;
+    public HostParser $host;
+    public PortParser $port;
+    public UserParser $user;
+    public PassParser $pass;
+    public PathParser $path;
+    public QueryParser $query;
     public FragmentParser $fragment;
 
-    private function registerParsers() : void
+    private function registerParsers(): void
     {
         $this->scheme   = new SchemeParser();
         $this->host     = new HostParser();

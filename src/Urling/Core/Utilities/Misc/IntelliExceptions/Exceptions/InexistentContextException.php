@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions;
 
@@ -16,7 +16,7 @@ class InexistentContextException extends Exception implements ExceptionParserInt
         parent::__construct($message, $code, $previous);
     }
 
-    public function setCustomExceptionMessage(string $message = "") : ?string
+    public function setCustomExceptionMessage(string $message = ""): ?string
     {
         if (isset($message) && !empty($message)) {
             return $this->exception_message = $message;
@@ -25,7 +25,7 @@ class InexistentContextException extends Exception implements ExceptionParserInt
         return $this->exception_message;
     }
 
-    public function getCustomExceptionMessage() : ?string
+    public function getCustomExceptionMessage(): ?string
     {
         return $this->exception_message ?? null;
     }

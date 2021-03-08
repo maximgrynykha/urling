@@ -4,4 +4,7 @@ namespace Urling\Core\Exceptions;
 
 use Exception;
 
-class EditException extends Exception {}
+class EditException extends Exception
+{
+
+}

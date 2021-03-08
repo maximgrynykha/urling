@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions;
 
@@ -16,7 +16,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
         $this->supported_method_names = [];
         $this->unsupported_method_name = "";
         $this->exception_message = "You try to call unsupported method";
-        
+
         $message = $this->getCustomExceptionMessage();
         parent::__construct($message, $code, $previous);
     }
@@ -31,12 +31,12 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
     public function setUnsupportedMethodName(string $name)
     {
         $this->unsupported_method_name = $name;
-        
+
         return $this;
     }
 
-    
-    public function setCustomExceptionMessage(string $message = "") : ?string
+
+    public function setCustomExceptionMessage(string $message = ""): ?string
     {
         if (isset($message) && !empty($message)) {
             return $this->exception_message = $message;
@@ -47,7 +47,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
 
             return (int) $percent > 70;
         });
-        
+
         if (!isset($prediction) || empty($prediction)) {
             return $this->exception_message .= ": '{$this->unsupported_method_name}()'";
         }
@@ -56,27 +56,27 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
 
         if (isset($prediction_count) || !empty($prediction_count) || $prediction_count) {
             switch ($prediction_count) {
-                case $prediction_count === 1 : 
+                case $prediction_count === 1:
                     $prediction = implode("", $prediction);
-                    
-                    return $this->exception_message .= 
-                        ": {$this->unsupported_method_name}()'."
-                        ." Try this one: '{$prediction}()'";    
 
-                case $prediction_count >= 2 : 
-                    $prediction = "'". implode("()', '", $prediction) . "()'.";
-                    
+                    return $this->exception_message .=
+                        ": {$this->unsupported_method_name}()'."
+                        . " Try this one: '{$prediction}()'";
+
+                case $prediction_count >= 2:
+                    $prediction = "'" . implode("()', '", $prediction) . "()'.";
+
                     return $this->exception_message .=
                         ": '{$this->unsupported_method_name}()'."
-                        ." Try one of the following: {$prediction}"; 
+                        . " Try one of the following: {$prediction}";
 
-                default :
+                default:
                     return $this->exception_message .= ": {$this->unsupported_method_name}.";
             }
         }
     }
 
-    public function getCustomExceptionMessage() : ?string
+    public function getCustomExceptionMessage(): ?string
     {
         return $this->exception_message ?? null;
     }

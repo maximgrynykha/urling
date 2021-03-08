@@ -13,10 +13,10 @@ trait BaseUrlEditor
 {
     /**
      * @param string|null $value
-     * 
+     *
      * @return string|null
      */
-    public function add(?string $value) : ?string
+    public function add(?string $value): ?string
     {
         if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($this->get()))) {
             throw new EditException("URL already added. Use 'update'.");
@@ -29,12 +29,12 @@ trait BaseUrlEditor
 
     /**
      * Return current state of URL
-     * 
+     *
      * @param mixed $without
-     * 
+     *
      * @return string|null
      */
-    public function get(bool $origin = false) : ?string
+    public function get(bool $origin = false): ?string
     {
         $url = $this->getFullUrl();
 
@@ -44,30 +44,30 @@ trait BaseUrlEditor
 
         return (!$origin) ? $url : $this->origin;
     }
-    
+
     /**
      * @param string|null $value
-     * 
+     *
      * @return string|null
      */
-    public function update(?string $value) : ?string
+    public function update(?string $value): ?string
     {
         $this->updateParts($value);
 
         return $this->get();
     }
-    
+
     /**
      * @return string|null
      */
-    public function delete() : ?string
+    public function delete(): ?string
     {
         $this->deleteParts();
-        
+
         return $this->get();
     }
 
-    protected function addParts(string $url) : void
+    protected function addParts(string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
@@ -81,7 +81,7 @@ trait BaseUrlEditor
         $this->fragment->add($lexicon["fragment"]);
     }
 
-    protected function updateParts(string $url) : void
+    protected function updateParts(string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
@@ -95,7 +95,7 @@ trait BaseUrlEditor
         $this->fragment->update($lexicon["fragment"]);
     }
 
-    protected function deleteParts() : void
+    protected function deleteParts(): void
     {
         $this->scheme->delete();
         $this->host->delete();
@@ -108,18 +108,18 @@ trait BaseUrlEditor
     }
 
     /**
-     * Examples:  
+     * Examples:
      * - $urling->getWithout("protocol");
      * - $urling->getWithout($url_parser->protocol);
-     * 
+     *
      * @param string|URLPartParser $url_part
-     * 
+     *
      * @return string|null
      */
-    public function getWithout($url_part) : ?string
+    public function getWithout($url_part): ?string
     {
         $url_parts = $this->getUrlParts();
-        
+
         if (is_string($url_part)) {
             $part = AliasesStorage::getNamespaceByAlias($url_part);
         } elseif ($url_part instanceof URLPartParser) {
@@ -129,7 +129,7 @@ trait BaseUrlEditor
         if (!in_array($part, array_keys($url_parts))) {
             throw new \Exception("You try to get a URL without the nonexistent part of it!");
         }
-           
+
         unset($url_parts[$part]);
 
         return $this->getFullUrl($url_parts);
@@ -137,15 +137,15 @@ trait BaseUrlEditor
 
     /**
      * Returns URL string
-     * 
+     *
      * @param array $url_parts
-     * 
+     *
      * @return string|null
      */
-    protected function getFullUrl(array $url_parts = []) : ?string
+    protected function getFullUrl(array $url_parts = []): ?string
     {
-        $full_url = (!empty($url_parts)) 
-            ? implode("", $url_parts) 
+        $full_url = (!empty($url_parts))
+            ? implode("", $url_parts)
             : implode("", $this->getUrlParts());
 
         return $full_url;
@@ -153,16 +153,16 @@ trait BaseUrlEditor
 
     /**
      * Returns URL part values
-     * 
+     *
      * @return array
      */
-    protected function getUrlParts() : array
+    protected function getUrlParts(): array
     {
         $url_parts = [
             $this->scheme->get(true),
             $this->user->get(true),
-            ($this->user->get(true)) 
-                ? $this->pass->get(true)."@"
+            ($this->user->get(true))
+                ? $this->pass->get(true) . "@"
                 : $this->pass->get(true),
             $this->host->get(true),
             $this->port->get(true),

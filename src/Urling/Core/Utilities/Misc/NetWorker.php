@@ -4,14 +4,14 @@ namespace Urling\Core\Utilities\Misc;
 
 trait NetWorker
 {
-    public static function getIp(string $resource) : ?string
+    public static function getIp(string $resource): ?string
     {
         $hostname = parse_url($resource)["host"] ?? null;
-        
+
         return (isset($hostname)) ? gethostbyname($hostname) : null;
     }
 
-    public static function getByIp(string $ip_address, bool $complete = false, string $resource = "") : ?string
+    public static function getByIp(string $ip_address, bool $complete = false, string $resource = ""): ?string
     {
         // дописать
 

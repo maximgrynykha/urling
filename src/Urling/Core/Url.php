@@ -25,7 +25,7 @@ final class Url
         $this->bootstrap();
     }
 
-    protected function bootstrap() : void
+    protected function bootstrap(): void
     {
         $this->registerParsers();
         $this->registerAliases();
@@ -35,10 +35,10 @@ final class Url
      * @param string $url
      * @param string|null $origin
      * @param bool $verify_protocols
-     * 
+     *
      * @return bool
      */
-    public function isSameOrigin(string $url, string $origin = null, bool $verify_protocols = true) : bool
+    public function isSameOrigin(string $url, string $origin = null, bool $verify_protocols = true): bool
     {
         $origin = $origin ?: $this->origin;
 
@@ -58,7 +58,8 @@ final class Url
         $url_hostname = UrlParser::getPartValueFromUrl($url, "hostname");
         $origin_hostname = UrlParser::getPartValueFromUrl($origin, "hostname");
 
-        if (!LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($url_hostname)) || 
+        if (
+            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
             !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
         ) {
             return false;

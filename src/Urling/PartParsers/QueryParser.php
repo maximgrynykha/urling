@@ -10,21 +10,21 @@ final class QueryParser extends URLPartParser
 
     /**
      * Универсальная функция для isParamExist / isParamsExists
-     * 
+     *
      * @param string|array|null $params
-     * 
+     *
      * @return bool
      */
-    public function exists($params = null) : bool
+    public function exists($params = null): bool
     {
         if (!isset($params)) {
             return parent::exists();
         }
 
         if (is_array($params) && count($params)) {
-            // 
-        } elseif(is_string($params) && mb_strlen($params)) {
-            // 
+            //
+        } elseif (is_string($params) && mb_strlen($params)) {
+            //
         }
     }
 
@@ -32,12 +32,12 @@ final class QueryParser extends URLPartParser
     // $urling->params->exists("username");
     // $urling->params->exists(["username", "project"]);
 
-    public function contains($params = null) : bool
+    public function contains($params = null): bool
     {
         return true;
     }
 
-    public function isParamsExist(array $names = []) : bool
+    public function isParamsExist(array $names = []): bool
     {
         $params = $this->explode();
 
@@ -56,7 +56,7 @@ final class QueryParser extends URLPartParser
         return true;
     }
 
-    public function isParamExist(string $name = "") : bool
+    public function isParamExist(string $name = ""): bool
     {
         $params = $this->getNameValuePairs();
 
@@ -72,8 +72,8 @@ final class QueryParser extends URLPartParser
 
         return $varification;
     }
-    
-    public function explode() : ?array
+
+    public function explode(): ?array
     {
         $params_string = $this->value;
 
@@ -83,13 +83,15 @@ final class QueryParser extends URLPartParser
                 $params = array_filter($params, function (string $param) {
                     return LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($param));
                 });
-            } else $params = [$params_string]; # ?param=value
+            } else {
+                $params = [$params_string]; # ?param=value
+            }
         }
 
         return $params ?? null;
     }
 
-    public function getNameValuePairs() : ?array
+    public function getNameValuePairs(): ?array
     {
         $params = $this->explode();
 
@@ -105,7 +107,7 @@ final class QueryParser extends URLPartParser
                 $param_pairs[$name_value_pairs[0]] = "";
             } else {
                 $filter = "#[^a-z0-9?!]#iu";
-                
+
                 $name = preg_replace($filter, "", $name_value_pairs[0]);
                 $value = $name_value_pairs[1];
 
@@ -120,28 +122,28 @@ final class QueryParser extends URLPartParser
         return $param_pairs;
     }
 
-    public function getValueByName(string $name) : ?string
+    public function getValueByName(string $name): ?string
     {
         $params = $this->getNameValuePairs();
-        
+
         return $params[$name] ?? null;
     }
 
-    public function getNameByValue(string $value = "") : ?string
+    public function getNameByValue(string $value = ""): ?string
     {
         $params = $this->getNameValuePairs();
 
         return array_flip($params)[$value] ?? null;
     }
 
-    public function getNames() : ?array
+    public function getNames(): ?array
     {
         $params = $this->getNameValuePairs();
 
         return array_keys($params) ?? null;
     }
-    
-    public function getValues() : ?array
+
+    public function getValues(): ?array
     {
         $params = $this->getNameValuePairs();
 

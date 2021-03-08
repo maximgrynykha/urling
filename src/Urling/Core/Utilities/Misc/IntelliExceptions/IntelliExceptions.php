@@ -33,5 +33,4 @@ trait IntelliExceptions
             throw new \Exception($exception->getCustomExceptionMessage());
         }
     }
-
 }

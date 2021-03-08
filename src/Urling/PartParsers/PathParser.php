@@ -9,29 +9,29 @@ final class PathParser extends URLPartParser
     // code here
 
     /**
-     * Универасальная функция для isRouteExist / isRoutesExists  
-     * Examples:  
-     * - $urling->url->routes->exist("ismaxim");  
+     * Универасальная функция для isRouteExist / isRoutesExists
+     * Examples:
+     * - $urling->url->routes->exist("ismaxim");
      * - $urling->url->routes->exist(["ismaxim", "urling"]);
-     * 
+     *
      * @param string|array|null $params
-     * 
+     *
      * @return bool
      */
-    public function exists($routes = null) : bool
+    public function exists($routes = null): bool
     {
         if (!isset($routes)) {
             return parent::exists();
         }
 
         if (is_array($routes) && count($routes)) {
-            // 
-        } elseif(is_string($routes) && mb_strlen($routes)) {
-            // 
+            //
+        } elseif (is_string($routes) && mb_strlen($routes)) {
+            //
         }
     }
-    
-    public function explode() : ?array 
+
+    public function explode(): ?array
     {
         $routes_string = $this->value;
 
@@ -41,7 +41,9 @@ final class PathParser extends URLPartParser
                 $routes = array_filter($routes, function (string $route) {
                     return LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($route));
                 });
-            } else $routes = [$routes_string];
+            } else {
+                $routes = [$routes_string];
+            }
         }
 
         return $routes ?? null;

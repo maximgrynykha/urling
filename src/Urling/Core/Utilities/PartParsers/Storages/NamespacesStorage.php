@@ -24,25 +24,33 @@ abstract class NamespacesStorage
 
     /**
      * Also accepts the name of URL part with concatenated aliases
-     * 
+     *
      * @param string $url_part
-     * 
+     *
      * @return string|null
      */
-    public static function getNamespace(string $url_part) : ?string
+    public static function getNamespace(string $url_part): ?string
     {
         $url_part = explode("|", $url_part);
 
         switch ($url_part) {
-            case in_array("scheme", $url_part)   : return self::$scheme;
-            case in_array("host", $url_part)     : return self::$host;
-            case in_array("port", $url_part)     : return self::$port;
-            case in_array("user", $url_part)     : return self::$user;
-            case in_array("pass", $url_part)     : return self::$pass;
-            case in_array("path", $url_part)     : return self::$path;
-            case in_array("query", $url_part)    : return self::$query;
-            case in_array("fragment", $url_part) : return self::$fragment;
-            default : 
+            case in_array("scheme", $url_part):
+                return self::$scheme;
+            case in_array("host", $url_part):
+                return self::$host;
+            case in_array("port", $url_part):
+                return self::$port;
+            case in_array("user", $url_part):
+                return self::$user;
+            case in_array("pass", $url_part):
+                return self::$pass;
+            case in_array("path", $url_part):
+                return self::$path;
+            case in_array("query", $url_part):
+                return self::$query;
+            case in_array("fragment", $url_part):
+                return self::$fragment;
+            default:
                 throw new \Exception("Unsupported URL part!");
         }
     }
@@ -50,7 +58,7 @@ abstract class NamespacesStorage
     /**
      * @return array
      */
-    public static function getAllNamespaces() : array
+    public static function getAllNamespaces(): array
     {
         return array_values(get_class_vars(self::class));
     }
