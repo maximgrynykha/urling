@@ -1,4 +1,4 @@
-![Urling](https://raw.githubusercontent.com/ismaxim/urling/labyou/task-13-add-hero-image-to-readme/assets/hero-image.png "Urling - url parser & constructor")
+![Urling](https://raw.githubusercontent.com/ismaxim/urling/master/assets/hero-image.png "Urling - url parser & constructor")
 
 ![Travis (.com)](https://img.shields.io/travis/com/ismaxim/urling?style=for-the-badge)
 
