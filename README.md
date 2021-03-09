@@ -1,4 +1,7 @@
+![Urling](https://raw.githubusercontent.com/ismaxim/urling/master/assets/image.png "Urling - url parser & constructor")
+
 ![Travis (.com)](https://img.shields.io/travis/com/ismaxim/urling?style=for-the-badge)
+
 # __Urling__
 
 URL parser and constructor in PHP.
