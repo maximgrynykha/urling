@@ -8,3 +8,6 @@ install:
 
 script:
   - vendor/bin/phpcs
+
+notifications:
+  slack: urling-workspace:Q9qML8cOQnOA5TFo4Uh4AnlE
