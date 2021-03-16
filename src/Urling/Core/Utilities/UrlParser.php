@@ -96,15 +96,14 @@ final class UrlParser
         $aliases = self::getAliases();
 
         $lexicon = [
-            "scheme|" . $aliases["scheme"]     => (!empty($lexicon["scheme"]))   ? $lexicon["scheme"]   : null,
-            "host|" . $aliases["host"]         => (!empty($lexicon["host"]))     ? $lexicon["host"]     : null,
-            "port|" . $aliases["port"]         => (!empty($lexicon["port"]))     ? $lexicon["port"]     : null,
-            "port|" . $aliases["port"]         => (!empty($lexicon["port"]))     ? $lexicon["port"]     : null,
-            "user|" . $aliases["user"]         => (!empty($lexicon["user"]))     ? $lexicon["user"]     : null,
-            "pass|" . $aliases["pass"]         => (!empty($lexicon["pass"]))     ? $lexicon["pass"]     : null,
-            "path|" . $aliases["path"]         => (!empty($lexicon["path"]))     ? $lexicon["path"]     : null,
-            "query|" . $aliases["query"]       => (!empty($lexicon["query"]))    ? $lexicon["query"]    : null,
-            "fragment|" . $aliases["fragment"] => (!empty($lexicon["fragment"])) ? $lexicon["fragment"] : null,
+            "scheme|" . $aliases["scheme"]     => $lexicon["scheme"],
+            "host|" . $aliases["host"]         => $lexicon["host"],
+            "port|" . $aliases["port"]         => $lexicon["port"],
+            "user|" . $aliases["user"]         => $lexicon["user"],
+            "pass|" . $aliases["pass"]         => $lexicon["pass"],
+            "path|" . $aliases["path"]         => $lexicon["path"],
+            "query|" . $aliases["query"]       => $lexicon["query"],
+            "fragment|" . $aliases["fragment"] => $lexicon["fragment"],
         ];
 
         return (!$with_gluings) ? $lexicon : self::getPartsWithGluings($lexicon);
