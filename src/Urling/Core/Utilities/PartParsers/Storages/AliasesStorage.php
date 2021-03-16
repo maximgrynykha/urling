@@ -6,16 +6,29 @@ use Urling\Core\Utilities\Misc\LogicVerifier;
 
 abstract class AliasesStorage
 {
-    public static function getAliases(string $namespace = ""): ?string
+    /**
+     * @param string $namespace
+     * 
+     * @return string
+     */
+    public static function getAliases(string $namespace = ""): string
     {
         return self::aliases()[$namespace];
     }
 
+    /**
+     * @return array<int, string>
+     */
     public static function getAllAliases(): array
     {
         return array_values(self::aliases());
     }
 
+    /**
+     * @param string $alias
+     * 
+     * @return string
+     */
     public static function getNamespaceByAlias(string $alias): string
     {
         $all_aliases = self::getAllAliases();
@@ -32,6 +45,9 @@ abstract class AliasesStorage
         return array_flip(self::aliases())[$accessor];
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected static function aliases(): array
     {
         return [
