@@ -1,6 +1,5 @@
 {
     "name": "ismaxim/urling",
-    "version": "dev-master",
     "description": "URL parser and constructor in PHP",
     "type": "library",
     "keywords": [
@@ -24,7 +23,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=7.4",
-        "phpunit/php-invoker": "3.1.x-dev"
+        "phpunit/php-invoker": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
