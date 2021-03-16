@@ -13,14 +13,46 @@ use Urling\PartParsers\UserParser;
 
 abstract class NamespacesStorage
 {
+    /**
+     * @var string
+     */
     public static $scheme   = SchemeParser::class;
+
+    /**
+     * @var string
+     */
     public static $host     = HostParser::class;
+
+    /**
+     * @var string
+     */
     public static $port     = PortParser::class;
+    
+    /**
+     * @var string
+     */
     public static $user     = UserParser::class;
+
+    /**
+     * @var string
+     */
     public static $pass     = PassParser::class;
+
+    /**
+     * @var string
+     */
     public static $path     = PathParser::class;
+
+    /**
+     * @var string
+     */
     public static $query    = QueryParser::class;
+
+    /**
+     * @var string
+     */
     public static $fragment = FragmentParser::class;
+
 
     /**
      * Also accepts the name of URL part with concatenated aliases
@@ -56,7 +88,7 @@ abstract class NamespacesStorage
     }
 
     /**
-     * @return array
+     * @return array<int, string>
      */
     public static function getAllNamespaces(): array
     {
