@@ -14,7 +14,7 @@ final class PathParser extends URLPartParser
      * - $urling->url->routes->exist("ismaxim");
      * - $urling->url->routes->exist(["ismaxim", "urling"]);
      *
-     * @param string|array|null $params
+     * @param array<int, string>|string|null $routes
      *
      * @return bool
      */
@@ -29,8 +29,13 @@ final class PathParser extends URLPartParser
         } elseif (is_string($routes) && mb_strlen($routes)) {
             //
         }
+
+        return true;
     }
 
+    /**
+     * @return array<string, string|null>|array<int, string|null>|null
+     */
     public function explode(): ?array
     {
         $routes_string = $this->value;
