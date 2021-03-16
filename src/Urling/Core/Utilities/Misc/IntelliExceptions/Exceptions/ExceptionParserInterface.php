@@ -4,6 +4,13 @@ namespace Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions;
 
 interface ExceptionParserInterface
 {
-    public function setCustomExceptionMessage();
-    public function getCustomExceptionMessage();
+    /**
+     * @return string|null
+     */
+    public function getCustomExceptionMessage(): ?string;
+
+    /**
+     * @return void
+     */
+    public function setCustomExceptionMessage(string $message = ""): void;
 }
