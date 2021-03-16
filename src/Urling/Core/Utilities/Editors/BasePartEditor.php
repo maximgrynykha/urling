@@ -10,7 +10,7 @@ trait BasePartEditor
     /**
      * Create URL-part and set it value
      *
-     * @param string $value
+     * @param string|null $value
      *
      * @return string|null
      */
@@ -29,6 +29,8 @@ trait BasePartEditor
     /**
      * Return value of URL-part
      *
+     * @param bool $with_gluing
+     * 
      * @return string|null
      */
     public function get(bool $with_gluing = false): ?string
@@ -39,7 +41,7 @@ trait BasePartEditor
     /**
      * Update value of URL-part
      *
-     * @param bool $value
+     * @param string|null $value
      *
      * @return string|null
      */
@@ -63,6 +65,11 @@ trait BasePartEditor
         return $this->get();
     }
 
+    /**
+     * @param string|null $value
+     * 
+     * @return void
+     */
     protected function sanitize(?string $value): void
     {
         if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value))) {
@@ -88,6 +95,9 @@ trait BasePartEditor
         }
     }
 
+    /**
+     * @return string|null
+     */
     protected function withGluing(): ?string
     {
         $value = $this->value;
