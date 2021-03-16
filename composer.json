@@ -1,6 +1,5 @@
 {
     "name": "ismaxim/urling",
-    "version": "dev-master",
     "description": "URL parser and constructor in PHP",
     "type": "library",
     "keywords": [
@@ -23,13 +22,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": ">=7.4",
-        "phpunit/php-invoker": "3.1.x-dev"
+        "php": "^7.4|^8.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5",
-        "squizlabs/php_codesniffer": "4.0.x-dev",
-        "phpstan/phpstan": "0.12.x-dev"
+        "phpunit/phpunit": "^9.5.0",
+        "phpstan/phpstan": "^0.12.0",
+        "squizlabs/php_codesniffer": "^4.0.0"
     },
     "autoload": {
         "psr-4": {
@@ -40,5 +38,12 @@
         "psr-4": { 
             "Urling\\": "tests/Urling"
         }
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/phpcs",
+        "phpstan": "vendor/bin/phpstan analyse"
+    },
+    "config": {
+        "process-timeout": 0
     }
 }

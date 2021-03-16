@@ -30,7 +30,7 @@ trait BaseUrlEditor
     /**
      * Return current state of URL
      *
-     * @param mixed $without
+     * @param bool $origin
      *
      * @return string|null
      */
@@ -67,6 +67,11 @@ trait BaseUrlEditor
         return $this->get();
     }
 
+    /**
+     * @param string $url
+     *
+     * @return void
+     */
     protected function addParts(string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
@@ -81,6 +86,11 @@ trait BaseUrlEditor
         $this->fragment->add($lexicon["fragment"]);
     }
 
+    /**
+     * @param string $url
+     *
+     * @return void
+     */
     protected function updateParts(string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
@@ -95,6 +105,9 @@ trait BaseUrlEditor
         $this->fragment->update($lexicon["fragment"]);
     }
 
+    /**
+     * @return void
+     */
     protected function deleteParts(): void
     {
         $this->scheme->delete();
@@ -112,13 +125,15 @@ trait BaseUrlEditor
      * - $urling->getWithout("protocol");
      * - $urling->getWithout($url_parser->protocol);
      *
-     * @param string|URLPartParser $url_part
+     * @param mixed $url_part
      *
      * @return string|null
      */
     public function getWithout($url_part): ?string
     {
         $url_parts = $this->getUrlParts();
+
+        $part = null;
 
         if (is_string($url_part)) {
             $part = AliasesStorage::getNamespaceByAlias($url_part);
@@ -138,11 +153,11 @@ trait BaseUrlEditor
     /**
      * Returns URL string
      *
-     * @param array $url_parts
+     * @param array<string, string|null> $url_parts
      *
-     * @return string|null
+     * @return string
      */
-    protected function getFullUrl(array $url_parts = []): ?string
+    protected function getFullUrl(array $url_parts = []): string
     {
         $full_url = (!empty($url_parts))
             ? implode("", $url_parts)
@@ -154,7 +169,7 @@ trait BaseUrlEditor
     /**
      * Returns URL part values
      *
-     * @return array
+     * @return array<string, string|null>
      */
     protected function getUrlParts(): array
     {
@@ -172,6 +187,8 @@ trait BaseUrlEditor
         ];
 
         // return array_combine(NamesStorage::getNames(), $url_parts);
-        return array_combine(NamespacesStorage::getAllNamespaces(), $url_parts);
+        $namespace_value_pairs = array_combine(NamespacesStorage::getAllNamespaces(), $url_parts);
+
+        return $namespace_value_pairs ?: [];
     }
 }

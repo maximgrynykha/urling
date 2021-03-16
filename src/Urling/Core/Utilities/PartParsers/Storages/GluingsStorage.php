@@ -4,16 +4,27 @@ namespace Urling\Core\Utilities\PartParsers\Storages;
 
 abstract class GluingsStorage
 {
-    public static function getGluing(string $namespace): ?string
+    /**
+     * @param string $namespace
+     *
+     * @return string
+     */
+    public static function getGluing(string $namespace): string
     {
         return self::gluings()[$namespace];
     }
 
+    /**
+     * @return array<int, string>
+     */
     public static function getAllGluings(): array
     {
         return array_values(self::gluings());
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected static function gluings(): array
     {
         return [

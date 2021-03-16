@@ -16,15 +16,19 @@ class InexistentContextException extends Exception implements ExceptionParserInt
         parent::__construct($message, $code, $previous);
     }
 
-    public function setCustomExceptionMessage(string $message = ""): ?string
+    /**
+     * @param string $message
+     *
+     * @return void
+     */
+    public function setCustomExceptionMessage(string $message = ""): void
     {
-        if (isset($message) && !empty($message)) {
-            return $this->exception_message = $message;
-        }
-
-        return $this->exception_message;
+        $this->exception_message = $message;
     }
 
+    /**
+     * @return string|null
+     */
     public function getCustomExceptionMessage(): ?string
     {
         return $this->exception_message ?? null;
