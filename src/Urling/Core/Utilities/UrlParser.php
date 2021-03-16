@@ -193,4 +193,127 @@ final class UrlParser
 
         return $lexicon;
     }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getScheme(string $url): ?string
+    {
+        $scheme = parse_url($url, PHP_URL_SCHEME);
+
+        if ($scheme === false || $scheme === null) {
+            $scheme = null;
+        }
+
+        return $scheme;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getHost(string $url): ?string
+    {
+        $host = parse_url($url, PHP_URL_SCHEME);
+
+        if ($host === false || $host === null) {
+            $host = null;
+        }
+
+        return $host;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getPort(string $url): ?string
+    {
+        $port = parse_url($url, PHP_URL_SCHEME);
+
+        if ($port === false || $port === null) {
+            $port = null;
+        }
+
+        return $port;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getUser(string $url): ?string
+    {
+        $user = parse_url($url, PHP_URL_SCHEME);
+
+        if ($user === false || $user === null) {
+            $user = null;
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getPass(string $url): ?string
+    {
+        $pass = parse_url($url, PHP_URL_SCHEME);
+
+        if ($pass === false || $pass === null) {
+            $pass = null;
+        }
+
+        return $pass;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getPath(string $url): ?string
+    {
+        $path = parse_url($url, PHP_URL_SCHEME);
+
+        if ($path === false || $path === null) {
+            $path = null;
+        }
+
+        return $path;
+    }
+
+    public static function getQuery(string $url): ?string
+    {
+        $query = parse_url($url, PHP_URL_SCHEME);
+
+        if ($query === false || $query === null) {
+            $query = null;
+        }
+
+        return $query;
+    }
+
+    /**
+     * @param string $url
+     * 
+     * @return string|null
+     */
+    public static function getFragment(string $url): ?string
+    {
+        $fragment = parse_url($url, PHP_URL_SCHEME);
+
+        if ($fragment === false || $fragment === null) {
+            $fragment = null;
+        }
+
+        return $fragment;
+    }
 }
