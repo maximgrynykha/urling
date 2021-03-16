@@ -6,7 +6,7 @@ abstract class NamesStorage
 {
     /**
      * @param string $namespace
-     * 
+     *
      * @return string
      */
     public static function getName(string $namespace): string

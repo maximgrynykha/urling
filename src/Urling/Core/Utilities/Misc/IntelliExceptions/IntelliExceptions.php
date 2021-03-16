@@ -10,7 +10,7 @@ trait IntelliExceptions
     /**
      * @param mixed $method_name
      * @param array<mixed> $method_attributes
-     * 
+     *
      * @return void
      */
     public function __call($method_name, $method_attributes)

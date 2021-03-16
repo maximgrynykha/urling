@@ -69,7 +69,7 @@ trait BaseUrlEditor
 
     /**
      * @param string $url
-     * 
+     *
      * @return void
      */
     protected function addParts(string $url): void
@@ -88,7 +88,7 @@ trait BaseUrlEditor
 
     /**
      * @param string $url
-     * 
+     *
      * @return void
      */
     protected function updateParts(string $url): void
@@ -152,9 +152,9 @@ trait BaseUrlEditor
 
     /**
      * Returns URL string
-     * 
+     *
      * @param array<string, string|null> $url_parts
-     * 
+     *
      * @return string
      */
     protected function getFullUrl(array $url_parts = []): string
@@ -164,7 +164,7 @@ trait BaseUrlEditor
             : implode("", $this->getUrlParts());
 
         return $full_url;
-    }   
+    }
 
     /**
      * Returns URL part values

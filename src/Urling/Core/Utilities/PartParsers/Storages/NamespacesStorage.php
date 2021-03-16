@@ -27,7 +27,7 @@ abstract class NamespacesStorage
      * @var string
      */
     public static $port     = PortParser::class;
-    
+
     /**
      * @var string
      */

@@ -11,7 +11,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
     public array $supported_method_names;
 
     public string $unsupported_method_name;
-    
+
     public string $exception_message;
 
     public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
@@ -26,7 +26,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
 
     /**
      * @param array<int, string> $names
-     * 
+     *
      * @return self
      */
     public function setSupportedMethodNames(array $names): self
@@ -38,7 +38,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
 
     /**
      * @param string $name
-     * 
+     *
      * @return self
      */
     public function setUnsupportedMethodName(string $name): self
@@ -51,7 +51,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
 
     /**
      * @param string $message
-     * 
+     *
      * @return void
      */
     public function setCustomExceptionMessage(string $message = "You try to call unsupported method"): void
@@ -86,7 +86,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
                         $message .=
                         ": '{$this->unsupported_method_name}()'."
                         . " Try one of the following: {$prediction}";
-                    
+
                     break;
                 default:
                     $this->exception_message = $message .= ": {$this->unsupported_method_name}.";

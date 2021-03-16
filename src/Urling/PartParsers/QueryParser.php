@@ -36,7 +36,7 @@ final class QueryParser extends URLPartParser
 
     /**
      * @param null $params
-     * 
+     *
      * @return bool
      */
     public function contains($params = null): bool
@@ -46,7 +46,7 @@ final class QueryParser extends URLPartParser
 
     /**
      * @param array<int, string> $names
-     * 
+     *
      * @return bool
      */
     public function isParamsExist(array $names = []): bool
@@ -70,7 +70,7 @@ final class QueryParser extends URLPartParser
 
     /**
      * @param string $name
-     * 
+     *
      * @return bool
      */
     public function isParamExist(string $name = ""): bool
@@ -117,7 +117,7 @@ final class QueryParser extends URLPartParser
     public function getNameValuePairs(): ?array
     {
         $param_pairs = [];
-        
+
         $params = $this->explode();
 
         if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
@@ -149,7 +149,7 @@ final class QueryParser extends URLPartParser
 
     /**
      * @param string $name
-     * 
+     *
      * @return string|null
      */
     public function getValueByName(string $name): ?string
@@ -161,7 +161,7 @@ final class QueryParser extends URLPartParser
 
     /**
      * @param string $value
-     * 
+     *
      * @return string|null
      */
     public function getNameByValue(string $value = ""): ?string

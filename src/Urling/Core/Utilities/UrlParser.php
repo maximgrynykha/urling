@@ -193,7 +193,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getScheme(string $url): ?string
@@ -209,7 +209,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getHost(string $url): ?string
@@ -225,7 +225,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getPort(string $url): ?string
@@ -241,7 +241,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getUser(string $url): ?string
@@ -257,7 +257,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getPass(string $url): ?string
@@ -273,7 +273,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getPath(string $url): ?string
@@ -300,7 +300,7 @@ final class UrlParser
 
     /**
      * @param string $url
-     * 
+     *
      * @return string|null
      */
     public static function getFragment(string $url): ?string

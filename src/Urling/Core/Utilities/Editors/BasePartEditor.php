@@ -30,7 +30,7 @@ trait BasePartEditor
      * Return value of URL-part
      *
      * @param bool $with_gluing
-     * 
+     *
      * @return string|null
      */
     public function get(bool $with_gluing = false): ?string
@@ -67,7 +67,7 @@ trait BasePartEditor
 
     /**
      * @param string|null $value
-     * 
+     *
      * @return void
      */
     protected function sanitize(?string $value): void

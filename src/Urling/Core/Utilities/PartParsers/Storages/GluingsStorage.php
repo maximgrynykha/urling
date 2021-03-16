@@ -6,7 +6,7 @@ abstract class GluingsStorage
 {
     /**
      * @param string $namespace
-     * 
+     *
      * @return string
      */
     public static function getGluing(string $namespace): string

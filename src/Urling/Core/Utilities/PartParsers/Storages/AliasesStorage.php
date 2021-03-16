@@ -8,7 +8,7 @@ abstract class AliasesStorage
 {
     /**
      * @param string $namespace
-     * 
+     *
      * @return string
      */
     public static function getAliases(string $namespace = ""): string
@@ -26,7 +26,7 @@ abstract class AliasesStorage
 
     /**
      * @param string $alias
-     * 
+     *
      * @return string
      */
     public static function getNamespaceByAlias(string $alias): string
