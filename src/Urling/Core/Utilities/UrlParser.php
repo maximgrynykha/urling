@@ -15,7 +15,7 @@ final class UrlParser
      *
      * @param string $url
      *
-     * @return array
+     * @return array<string, string|null>
      */
     private static function createLexicon(string $url): array
     {
@@ -72,7 +72,7 @@ final class UrlParser
      * @param string $url
      * @param bool $with_gluings
      *
-     * @return array
+     * @return array<string, string|null>
      */
     public static function getPartsFromUrl(string $url, bool $with_gluings = false): array
     {
@@ -88,7 +88,7 @@ final class UrlParser
      * @param string $url
      * @param bool $with_gluings
      *
-     * @return array
+     * @return array<string, string|null>
      */
     public static function getPartsFromUrlWithAliases(string $url, bool $with_gluings = false): array
     {
@@ -134,7 +134,7 @@ final class UrlParser
     }
 
     /**
-     * @return array
+     * @return array<string, string>
      */
     protected static function getAliases(): array
     {
@@ -151,10 +151,10 @@ final class UrlParser
     }
 
     /**
-     * @param array $lexicon
+     * @param array<string, string|null> $lexicon
      * @param bool $is_aliases_mode
      *
-     * @return array
+     * @return array<string, string|null>
      */
     protected static function getPartsWithGluings(array $lexicon, bool $is_aliases_mode = false): array
     {
