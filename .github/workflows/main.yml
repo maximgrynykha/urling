@@ -1,7 +1,6 @@
 name: Build
 
 on:
-  push:
   pull_request:
 
 jobs:
@@ -28,7 +27,7 @@ jobs:
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Run PHPCS
-      run: composer run-script phpscs
+      run: composer run-script phpcs
 
     - name: Run PHPSTAN
       run: composer run-script phpstan
