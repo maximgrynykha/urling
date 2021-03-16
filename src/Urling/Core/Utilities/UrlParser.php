@@ -15,21 +15,19 @@ final class UrlParser
      *
      * @param string $url
      *
-     * @return void
+     * @return array
      */
     private static function createLexicon(string $url): array
     {
-        $parsed_resource = parse_url($url);
-
         $lexicon = [
-            "scheme"   => (!empty($parsed_resource["scheme"]))   ? $parsed_resource["scheme"]   : null,
-            "host"     => (!empty($parsed_resource["host"]))     ? $parsed_resource["host"]     : null,
-            "port"     => (!empty($parsed_resource["port"]))     ? $parsed_resource["port"]     : null,
-            "user"     => (!empty($parsed_resource["user"]))     ? $parsed_resource["user"]     : null,
-            "pass"     => (!empty($parsed_resource["pass"]))     ? $parsed_resource["pass"]     : null,
-            "path"     => (!empty($parsed_resource["path"]))     ? $parsed_resource["path"]     : null,
-            "query"    => (!empty($parsed_resource["query"]))    ? $parsed_resource["query"]    : null,
-            "fragment" => (!empty($parsed_resource["fragment"])) ? $parsed_resource["fragment"] : null,
+            "scheme"   => self::getScheme($url),
+            "host"     => self::getHost($url),
+            "port"     => self::getPort($url),
+            "user"     => self::getUser($url),
+            "pass"     => self::getPass($url),
+            "path"     => self::getPath($url),
+            "query"    => self::getQuery($url),
+            "fragment" => self::getFragment($url),
         ];
 
         return $lexicon;
