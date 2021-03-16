@@ -18,7 +18,7 @@ class InexistentContextException extends Exception implements ExceptionParserInt
 
     public function setCustomExceptionMessage(string $message = ""): ?string
     {
-        if (isset($message) && !empty($message)) {
+        if (!empty($message)) {
             return $this->exception_message = $message;
         }
 
