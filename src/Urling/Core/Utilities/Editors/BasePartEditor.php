@@ -20,7 +20,6 @@ trait BasePartEditor
             throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
         }
 
-        $this->value = $value;
         $this->sanitize($this->value);
 
         return $this->get();
@@ -93,6 +92,8 @@ trait BasePartEditor
                     $this->value = preg_replace("#^[\#]+#iu", "", $value);
             }
         }
+
+        $this->value = $value;
     }
 
     /**
