@@ -33,7 +33,7 @@ abstract class URLPartParser
     public function exists(): bool
     {
         return LogicVerifier::verify(
-            fn() => LogicVerifier::isIssetAndNotEmpty($this->value)
+            fn() => LogicVerifier::isNotNullAndNotEmpty($this->value)
         );
     }
 

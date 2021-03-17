@@ -53,11 +53,11 @@ final class QueryParser extends URLPartParser
     {
         $params = $this->explode();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($params))) {
             return false;
         }
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($names))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($names))) {
             foreach ($names as $name) {
                 if (!$this->isParamExist($name)) {
                     return false;
@@ -77,7 +77,7 @@ final class QueryParser extends URLPartParser
     {
         $params = $this->getNameValuePairs();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($params))) {
             return false;
         }
 
@@ -97,11 +97,11 @@ final class QueryParser extends URLPartParser
     {
         $params_string = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($params_string))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($params_string))) {
             if (mb_strpos($params_string, "&") !== false) {
                 $params = explode("&", $params_string);
                 $params = array_filter($params, function (string $param) {
-                    return LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($param));
+                    return LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($param));
                 });
             } else {
                 $params = [$params_string]; # ?param=value
@@ -120,7 +120,7 @@ final class QueryParser extends URLPartParser
 
         $params = $this->explode();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($params))) {
             return null;
         }
 
@@ -136,7 +136,7 @@ final class QueryParser extends URLPartParser
                 $name = preg_replace($filter, "", $name_value_pairs[0]);
                 $value = $name_value_pairs[1];
 
-                if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($name))) {
+                if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($name))) {
                     $param_pairs[$name] = $value;
                 } else {
                     $param_pairs[] = $value;

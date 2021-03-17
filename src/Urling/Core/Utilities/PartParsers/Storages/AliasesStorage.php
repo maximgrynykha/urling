@@ -38,7 +38,7 @@ abstract class AliasesStorage
             fn(string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
         ));
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($accessor))) {
+        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($accessor))) {
             throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
         }
 
