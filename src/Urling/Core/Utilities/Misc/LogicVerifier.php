@@ -7,7 +7,7 @@ use Closure;
 abstract class LogicVerifier
 {
     /**
-     * Example: LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value))
+     * Example: LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($value))
      *
      * @param Closure $verifier
      *
@@ -25,9 +25,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isIssetAndEmpty($context): bool
+    public static function isNotNullAndEmpty($context): bool
     {
-        return isset($context) and empty($context);
+        return !is_null($context) and empty($context);
     }
 
     /**
@@ -35,9 +35,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isNotIssetAndEmpty($context): bool
+    public static function isNullAndEmpty($context): bool
     {
-        return !isset($context) and empty($context);
+        return is_null($context) and empty($context);
     }
 
     /**
@@ -45,9 +45,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isIssetAndNotEmpty($context): bool
+    public static function isNotNullAndNotEmpty($context): bool
     {
-        return isset($context) and !empty($context);
+        return !is_null($context) and !empty($context);
     }
 
     /**
@@ -55,9 +55,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isNotIssetAndNotEmpty($context): bool
+    public static function isNullAndNotEmpty($context): bool
     {
-        return !isset($context) and !empty($context);
+        return is_null($context) and !empty($context);
     }
 
     // OR verifiers
@@ -67,9 +67,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isIssetOrEmpty($context): bool
+    public static function isNotNullOrEmpty($context): bool
     {
-        return isset($context) or empty($context);
+        return !is_null($context) or empty($context);
     }
 
     /**
@@ -77,9 +77,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isNotIssetOrEmpty($context): bool
+    public static function isNullOrEmpty($context): bool
     {
-        return !isset($context) or empty($context);
+        return is_null($context) or empty($context);
     }
 
     /**
@@ -87,9 +87,9 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isIssetAndOrEmpty($context): bool
+    public static function isNotNullOrOrEmpty($context): bool
     {
-        return isset($context) or !empty($context);
+        return !is_null($context) or !empty($context);
     }
 
     /**
@@ -97,8 +97,8 @@ abstract class LogicVerifier
      *
      * @return bool
      */
-    public static function isNotIssetOrNotEmpty($context): bool
+    public static function isNullOrNotEmpty($context): bool
     {
-        return !isset($context) or !empty($context);
+        return is_null($context) or !empty($context);
     }
 }
