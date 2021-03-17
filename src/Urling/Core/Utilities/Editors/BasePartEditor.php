@@ -20,7 +20,11 @@ trait BasePartEditor
             throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
         }
 
-        $this->sanitize($this->value);
+        $this->value = $value;
+
+        if (!is_null($this->value) && mb_strlen($this->value)) {
+            $this->sanitize($this->value);
+        }
 
         return $this->get();
     }
@@ -65,35 +69,31 @@ trait BasePartEditor
     }
 
     /**
-     * @param string|null $value
+     * @param string $value
      *
      * @return void
      */
-    protected function sanitize(?string $value): void
+    protected function sanitize(string $value): void
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($value))) {
-            switch ($this->name) {
-                case "scheme":
-                    $this->value = preg_replace("#[\:\/]+#iu", "", $value);
-                    break;
-                case "pass":
-                    $this->value = preg_replace("#^[\:]+#iu", "", $value);
-                    break;
-                case "port":
-                    $this->value = preg_replace("#^[\:]+#iu", "", $value);
-                    break;
-                case "path":
-                    $this->value = preg_replace("#^[\/]+#iu", "", $value);
-                    break;
-                case "query":
-                    $this->value = preg_replace("#^[\?]+#iu", "", $value);
-                    break;
-                case "fragment":
-                    $this->value = preg_replace("#^[\#]+#iu", "", $value);
-            }
+        switch ($this->name) {
+            case "scheme":
+                $this->value = preg_replace("#[\:\/]+#iu", "", $value);
+                break;
+            case "pass":
+                $this->value = preg_replace("#^[\:]+#iu", "", $value);
+                break;
+            case "port":
+                $this->value = preg_replace("#^[\:]+#iu", "", $value);
+                break;
+            case "path":
+                $this->value = preg_replace("#^[\/]+#iu", "", $value);
+                break;
+            case "query":
+                $this->value = preg_replace("#^[\?]+#iu", "", $value);
+                break;
+            case "fragment":
+                $this->value = preg_replace("#^[\#]+#iu", "", $value);
         }
-
-        $this->value = $value;
     }
 
     /**
