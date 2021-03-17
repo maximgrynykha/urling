@@ -187,8 +187,6 @@ trait BaseUrlEditor
         ];
 
         // return array_combine(NamesStorage::getNames(), $url_parts);
-        $namespace_value_pairs = array_combine(NamespacesStorage::getAllNamespaces(), $url_parts);
-
-        return $namespace_value_pairs ?: [];
+        return array_combine(NamespacesStorage::getAllNamespaces(), $url_parts) ?: [];
     }
 }
