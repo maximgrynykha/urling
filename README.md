@@ -1,6 +1,6 @@
 ![Urling](https://raw.githubusercontent.com/ismaxim/urling/master/assets/hero-image.png "Urling - url parser & constructor")
 
-![Travis (.com)](https://img.shields.io/travis/com/ismaxim/urling?style=for-the-badge)
+![Build Status](https://img.shields.io/github/workflow/status/ismaxim/urling/Build?color=44CC11&label=build&logo=github&logoColor=white&style=for-the-badge)
 
 # __Urling__
 
