@@ -4,16 +4,27 @@ namespace Urling\Core\Utilities\PartParsers\Storages;
 
 abstract class NamesStorage
 {
-    public static function getName(string $namespace): ?string
+    /**
+     * @param string $namespace
+     *
+     * @return string
+     */
+    public static function getName(string $namespace): string
     {
         return self::names()[$namespace];
     }
 
+    /**
+     * @return array<int, string>
+     */
     public static function getAllNames(): array
     {
         return array_values(self::names());
     }
 
+    /**
+     * @return array<string, string>
+     */
     protected static function names(): array
     {
         return [

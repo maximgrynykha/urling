@@ -7,7 +7,13 @@ use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\ExceptionParserInter
 
 trait IntelliExceptions
 {
-    public function __call(string $method_name, array $method_attributes = [])
+    /**
+     * @param mixed $method_name
+     * @param array<mixed> $method_attributes
+     *
+     * @return void
+     */
+    public function __call($method_name, $method_attributes)
     {
         $class_methods = get_class_methods(get_class($this));
         $class_methods = array_filter($class_methods, function ($method) {
