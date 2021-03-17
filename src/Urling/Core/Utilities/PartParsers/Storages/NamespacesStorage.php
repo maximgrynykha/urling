@@ -61,7 +61,7 @@ abstract class NamespacesStorage
      *
      * @return string|null
      */
-    public static function getNamespace(string $url_part): ?string
+    public static function getNamespace(string $url_part): string
     {
         $url_part = explode("|", $url_part);
 
