@@ -27,10 +27,10 @@ class InexistentContextException extends Exception implements ExceptionParserInt
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getCustomExceptionMessage(): ?string
+    public function getCustomExceptionMessage(): string
     {
-        return $this->exception_message ?? null;
+        return $this->exception_message;
     }
 }
