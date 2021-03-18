@@ -3,11 +3,10 @@
 namespace Urling\Core\Utilities\Editors;
 
 use Urling\Core\Exceptions\EditException;
-use Urling\Core\Utilities\Misc\LogicVerifier;
+use Urling\Core\Part;
 use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
 use Urling\Core\Utilities\PartParsers\Storages\NamespacesStorage;
 use Urling\Core\Utilities\UrlParser;
-use Urling\PartParsers\URLPartParser;
 
 trait BaseUrlEditor
 {
@@ -18,7 +17,7 @@ trait BaseUrlEditor
      */
     public function add(?string $value): ?string
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($this->get()))) {
+        if ($this->get()) {
             throw new EditException("URL already added. Use 'update'.");
         }
 
@@ -37,10 +36,6 @@ trait BaseUrlEditor
     public function get(bool $origin = false): ?string
     {
         $url = $this->getFullUrl();
-
-        if (empty($url)) {
-            $url = null;
-        }
 
         return (!$origin) ? $url : $this->origin;
     }
@@ -68,11 +63,11 @@ trait BaseUrlEditor
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return void
      */
-    protected function addParts(string $url): void
+    protected function addParts(?string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
@@ -87,11 +82,11 @@ trait BaseUrlEditor
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return void
      */
-    protected function updateParts(string $url): void
+    protected function updateParts(?string $url): void
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
@@ -137,7 +132,7 @@ trait BaseUrlEditor
 
         if (is_string($url_part)) {
             $part = AliasesStorage::getNamespaceByAlias($url_part);
-        } elseif ($url_part instanceof URLPartParser) {
+        } elseif ($url_part instanceof Part) {
             $part = get_class($url_part);
         }
 
@@ -159,7 +154,7 @@ trait BaseUrlEditor
      */
     protected function getFullUrl(array $url_parts = []): string
     {
-        $full_url = (!empty($url_parts))
+        $full_url = ($url_parts)
             ? implode("", $url_parts)
             : implode("", $this->getUrlParts());
 
