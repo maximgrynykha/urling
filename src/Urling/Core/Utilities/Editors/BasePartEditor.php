@@ -3,7 +3,6 @@
 namespace Urling\Core\Utilities\Editors;
 
 use Urling\Core\Exceptions\EditException;
-use Urling\Core\Utilities\Misc\LogicVerifier;
 
 trait BasePartEditor
 {
@@ -16,13 +15,13 @@ trait BasePartEditor
      */
     public function add(?string $value): ?string
     {
-        if (isset($this->value)) {
+        if ($this->value) {
             throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
         }
 
         $this->value = $value;
 
-        if (!is_null($this->value) && mb_strlen($this->value)) {
+        if ($this->value) {
             $this->sanitize($this->value);
         }
 
@@ -73,7 +72,7 @@ trait BasePartEditor
      *
      * @return void
      */
-    protected function sanitize(string $value): void
+    protected function sanitize(string &$value): void
     {
         switch ($this->name) {
             case "scheme":
@@ -103,7 +102,7 @@ trait BasePartEditor
     {
         $value = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($this->value))) {
+        if ($value) {
             switch ($this->name) {
                 case "scheme":
                     $value = $value . $this->gluing;
