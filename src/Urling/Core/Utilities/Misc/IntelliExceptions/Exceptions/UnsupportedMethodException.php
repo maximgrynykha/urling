@@ -62,13 +62,13 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
             return (int) $percent > 70;
         });
 
-        if (empty($prediction)) {
+        if (!$prediction) {
             $this->exception_message = $message .= ": '{$this->unsupported_method_name}()'";
         }
 
         $prediction_count = count($prediction);
 
-        if ($prediction_count || !empty($prediction_count)) {
+        if ($prediction_count) {
             switch ($prediction_count) {
                 case $prediction_count === 1:
                     $prediction = implode("", $prediction);
@@ -79,7 +79,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
                         . " Try this one: '{$prediction}()'";
 
                     break;
-                case $prediction_count >= 2:
+                case $prediction_count:
                     $prediction = "'" . implode("()', '", $prediction) . "()'.";
 
                     $this->exception_message =
@@ -95,10 +95,10 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
     }
 
     /**
-     * @return string|null
+     * @return string
      */
-    public function getCustomExceptionMessage(): ?string
+    public function getCustomExceptionMessage(): string
     {
-        return $this->exception_message ?? null;
+        return $this->exception_message;
     }
 }
