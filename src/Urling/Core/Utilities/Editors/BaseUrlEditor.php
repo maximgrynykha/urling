@@ -71,14 +71,9 @@ trait BaseUrlEditor
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
-        $this->scheme->add($lexicon["scheme"]);
-        $this->host->add($lexicon["host"]);
-        $this->port->add($lexicon["port"]);
-        $this->user->add($lexicon["user"]);
-        $this->pass->add($lexicon["pass"]);
-        $this->path->add($lexicon["path"]);
-        $this->query->add($lexicon["query"]);
-        $this->fragment->add($lexicon["fragment"]);
+        foreach ($lexicon as $part_name => $part_value) {
+            $this->{$part_name}->add($part_value);
+        }
     }
 
     /**
@@ -90,14 +85,9 @@ trait BaseUrlEditor
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
-        $this->scheme->update($lexicon["scheme"]);
-        $this->host->update($lexicon["host"]);
-        $this->port->update($lexicon["port"]);
-        $this->user->update($lexicon["user"]);
-        $this->pass->update($lexicon["pass"]);
-        $this->path->update($lexicon["path"]);
-        $this->query->update($lexicon["query"]);
-        $this->fragment->update($lexicon["fragment"]);
+        foreach ($lexicon as $part_name => $part_value) {
+            $this->{$part_name}->update($part_value);
+        }
     }
 
     /**
@@ -105,14 +95,11 @@ trait BaseUrlEditor
      */
     protected function deleteParts(): void
     {
-        $this->scheme->delete();
-        $this->host->delete();
-        $this->port->delete();
-        $this->user->delete();
-        $this->pass->delete();
-        $this->path->delete();
-        $this->query->delete();
-        $this->fragment->delete();
+        $url_parts = UrlParser::getUrlPartNames();
+
+        foreach ($url_parts as $url_part) {
+            $this->{$url_part}->delete();
+        }
     }
 
     /**
