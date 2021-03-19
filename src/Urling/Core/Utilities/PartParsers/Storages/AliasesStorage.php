@@ -33,7 +33,7 @@ abstract class AliasesStorage
 
         $accessor = current(array_filter(
             $all_aliases,
-            fn(string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
+            fn (string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
         ));
 
         if (!$accessor) {
