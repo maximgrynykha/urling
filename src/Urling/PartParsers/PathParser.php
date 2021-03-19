@@ -2,9 +2,9 @@
 
 namespace Urling\PartParsers;
 
-use Urling\Core\Utilities\Misc\LogicVerifier;
+use Urling\Core\Part;
 
-final class PathParser extends URLPartParser
+final class PathParser extends Part
 {
     // code here
 
@@ -40,11 +40,11 @@ final class PathParser extends URLPartParser
     {
         $routes_string = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($routes_string))) {
+        if ($routes_string) {
             if (mb_strpos($routes_string, "/") !== false) {
                 $routes = explode("/", $routes_string);
                 $routes = array_filter($routes, function (string $route) {
-                    return LogicVerifier::verify(fn() => LogicVerifier::isNotNullAndNotEmpty($route));
+                    return $route == true;
                 });
             } else {
                 $routes = [$routes_string];
