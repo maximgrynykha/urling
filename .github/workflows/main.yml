@@ -26,9 +26,6 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    - name: Run PHPCS
-      run: composer run-script phpcs
-
     - name: Run PHPSTAN
       run: composer run-script phpstan
 
