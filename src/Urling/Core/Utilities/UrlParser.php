@@ -103,20 +103,16 @@ final class UrlParser
             $lexicon = self::createLexicon($url);
             $aliases = self::getAliases();
 
-            $lexicon = [
-                "scheme|" . $aliases["scheme"]     => $lexicon["scheme"],
-                "user|" . $aliases["user"]         => $lexicon["user"],
-                "pass|" . $aliases["pass"]         => $lexicon["pass"],
-                "host|" . $aliases["host"]         => $lexicon["host"],
-                "port|" . $aliases["port"]         => $lexicon["port"],
-                "path|" . $aliases["path"]         => $lexicon["path"],
-                "query|" . $aliases["query"]       => $lexicon["query"],
-                "fragment|" . $aliases["fragment"] => $lexicon["fragment"],
-            ];
+            $_lexicon = [];
+
+            foreach (self::getUrlPartNames() as $url_part_name) {
+                $accessor = $url_part_name."|".$aliases[$url_part_name];
+                $_lexicon[$accessor] = $lexicon[$url_part_name];
+            }
 
             $parts_with_aliases = ($with_gluings)
-                ? self::getPartsWithGluings($lexicon)
-                : $lexicon;
+                ? self::getPartsWithGluings($_lexicon)
+                : $_lexicon;
         }
 
         return $parts_with_aliases ?? [];
@@ -151,16 +147,15 @@ final class UrlParser
      */
     protected static function getAliases(): array
     {
-        return [
-            "scheme"   => AliasesStorage::getAliases(NamespacesStorage::getNamespace("scheme")),
-            "user"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("user")),
-            "pass"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("pass")),
-            "host"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("host")),
-            "port"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("port")),
-            "path"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("path")),
-            "query"    => AliasesStorage::getAliases(NamespacesStorage::getNamespace("query")),
-            "fragment" => AliasesStorage::getAliases(NamespacesStorage::getNamespace("fragment")),
-        ];
+        $aliases = [];
+
+        foreach (self::getUrlPartNames() as $url_part_name) {
+            $aliases[$url_part_name] = AliasesStorage::getAliases(
+                NamespacesStorage::getNamespace($url_part_name)
+            );
+        }
+
+        return $aliases;
     }
 
     /**
