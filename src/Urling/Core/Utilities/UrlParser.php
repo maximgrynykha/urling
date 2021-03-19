@@ -53,7 +53,7 @@ final class UrlParser
 
             $accessor = current(array_filter(
                 array_keys($lexicon_with_aliases),
-                fn(string $aliases) => mb_strpos($aliases, $url_part_name) !== false
+                fn (string $aliases) => mb_strpos($aliases, $url_part_name) !== false
             ));
 
             if (!$accessor) {
