@@ -2,8 +2,6 @@
 
 namespace Urling\Core\Utilities\PartParsers\Storages;
 
-use Urling\Core\Utilities\Misc\LogicVerifier;
-
 abstract class AliasesStorage
 {
     /**
@@ -38,7 +36,7 @@ abstract class AliasesStorage
             fn(string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
         ));
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($accessor))) {
+        if (!$accessor) {
             throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
         }
 
@@ -52,10 +50,10 @@ abstract class AliasesStorage
     {
         return [
             NamespacesStorage::$scheme   => "protocol",
-            NamespacesStorage::$host     => "hostname|domain",
-            NamespacesStorage::$port     => "",
             NamespacesStorage::$user     => "username",
             NamespacesStorage::$pass     => "password",
+            NamespacesStorage::$host     => "hostname|domain",
+            NamespacesStorage::$port     => "",
             NamespacesStorage::$path     => "routes",
             NamespacesStorage::$query    => "params|attributes",
             NamespacesStorage::$fragment => "anchor",

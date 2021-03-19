@@ -13,45 +13,14 @@ use Urling\PartParsers\UserParser;
 
 abstract class NamespacesStorage
 {
-    /**
-     * @var string
-     */
-    public static $scheme   = SchemeParser::class;
-
-    /**
-     * @var string
-     */
-    public static $host     = HostParser::class;
-
-    /**
-     * @var string
-     */
-    public static $port     = PortParser::class;
-
-    /**
-     * @var string
-     */
-    public static $user     = UserParser::class;
-
-    /**
-     * @var string
-     */
-    public static $pass     = PassParser::class;
-
-    /**
-     * @var string
-     */
-    public static $path     = PathParser::class;
-
-    /**
-     * @var string
-     */
-    public static $query    = QueryParser::class;
-
-    /**
-     * @var string
-     */
-    public static $fragment = FragmentParser::class;
+    public static string $scheme   = SchemeParser::class;
+    public static string $user     = UserParser::class;
+    public static string $pass     = PassParser::class;
+    public static string $host     = HostParser::class;
+    public static string $port     = PortParser::class;
+    public static string $path     = PathParser::class;
+    public static string $query    = QueryParser::class;
+    public static string $fragment = FragmentParser::class;
 
 
     /**
@@ -59,7 +28,7 @@ abstract class NamespacesStorage
      *
      * @param string $url_part
      *
-     * @return string|null
+     * @return string
      */
     public static function getNamespace(string $url_part): string
     {
@@ -68,14 +37,14 @@ abstract class NamespacesStorage
         switch ($url_part) {
             case in_array("scheme", $url_part):
                 return self::$scheme;
-            case in_array("host", $url_part):
-                return self::$host;
-            case in_array("port", $url_part):
-                return self::$port;
             case in_array("user", $url_part):
                 return self::$user;
             case in_array("pass", $url_part):
                 return self::$pass;
+            case in_array("host", $url_part):
+                return self::$host;
+            case in_array("port", $url_part):
+                return self::$port;
             case in_array("path", $url_part):
                 return self::$path;
             case in_array("query", $url_part):
