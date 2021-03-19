@@ -15,7 +15,7 @@ trait NetWorker
     {
         // дописать
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($resource))) {
+        if (!$resource) {
             return gethostbyaddr(self::getIp($resource));
         } else {
             return gethostbyaddr($ip_address);

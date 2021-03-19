@@ -14,10 +14,10 @@ use Urling\PartParsers\PortParser;
 trait AliasesRegistrar
 {
     public SchemeParser $protocol;
-    public HostParser $hostname;
-    public HostParser $domain;
     public UserParser $username;
     public PassParser $password;
+    public HostParser $hostname;
+    public HostParser $domain;
     public PathParser $routes;
     public QueryParser $params;
     public QueryParser $attributes;
@@ -26,10 +26,10 @@ trait AliasesRegistrar
     private function registerAliases(): void
     {
         $this->protocol   = $this->scheme;
-        $this->hostname   = $this->host;
-        $this->domain     = $this->host;
         $this->username   = $this->user;
         $this->password   = $this->pass;
+        $this->hostname   = $this->host;
+        $this->domain     = $this->host;
         $this->routes     = $this->path;
         $this->params     = $this->query;
         $this->attributes = $this->query;

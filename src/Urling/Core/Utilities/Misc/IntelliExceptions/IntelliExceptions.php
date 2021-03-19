@@ -17,10 +17,7 @@ trait IntelliExceptions
     {
         $class_methods = get_class_methods(get_class($this));
         $class_methods = array_filter($class_methods, function ($method) {
-            return (
-                mb_strpos($method, "_") === false &&
-                mb_strpos($method, "__") === false
-            );
+            return (mb_strpos($method, "__") === false);
         });
 
         try {

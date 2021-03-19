@@ -2,7 +2,9 @@
 
 namespace Urling\PartParsers;
 
-final class SchemeParser extends URLPartParser
+use Urling\Core\Part;
+
+final class SchemeParser extends Part
 {
     // code here
 }

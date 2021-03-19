@@ -5,7 +5,6 @@ namespace Urling\Core;
 use Urling\Core\Utilities\Editors\BaseUrlEditor;
 use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
 use Urling\Core\Utilities\UrlParser;
-use Urling\Core\Utilities\Misc\LogicVerifier;
 use Urling\Core\Utilities\Misc\SwissKnife;
 use Urling\Core\Utilities\PartParsers\Registrars\AliasesRegistrar;
 use Urling\Core\Utilities\PartParsers\Registrars\ParsersRegistrar;
@@ -21,7 +20,7 @@ final class Url
 
     public function __construct(string $url = null)
     {
-        $this->origin = trim($url);
+        $this->origin = trim((string) $url);
         $this->bootstrap();
     }
 
@@ -40,9 +39,7 @@ final class Url
      */
     public function isSameOrigin(string $url, string $origin = null, bool $verify_protocols = true): bool
     {
-        $origin = $origin ?: $this->origin;
-
-        if (!LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin))) {
+        if (!($origin = $origin ?: $this->origin)) {
             return false;
         }
 
@@ -58,10 +55,7 @@ final class Url
         $url_hostname = UrlParser::getPartValueFromUrl($url, "hostname");
         $origin_hostname = UrlParser::getPartValueFromUrl($origin, "hostname");
 
-        if (
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
-        ) {
+        if (!$url_hostname || !$origin_hostname) {
             return false;
         }
 

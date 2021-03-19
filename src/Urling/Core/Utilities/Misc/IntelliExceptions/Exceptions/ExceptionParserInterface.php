@@ -5,9 +5,9 @@ namespace Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions;
 interface ExceptionParserInterface
 {
     /**
-     * @return string|null
+     * @return string
      */
-    public function getCustomExceptionMessage(): ?string;
+    public function getCustomExceptionMessage(): string;
 
     /**
      * @return void

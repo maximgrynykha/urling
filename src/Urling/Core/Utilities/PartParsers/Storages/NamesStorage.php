@@ -29,10 +29,10 @@ abstract class NamesStorage
     {
         return [
             NamespacesStorage::$scheme   => "scheme",
-            NamespacesStorage::$host     => "host",
-            NamespacesStorage::$port     => "port",
             NamespacesStorage::$user     => "user",
             NamespacesStorage::$pass     => "pass",
+            NamespacesStorage::$host     => "host",
+            NamespacesStorage::$port     => "port",
             NamespacesStorage::$path     => "path",
             NamespacesStorage::$query    => "query",
             NamespacesStorage::$fragment => "fragment",

@@ -2,7 +2,9 @@
 
 namespace Urling\PartParsers;
 
-final class HostParser extends URLPartParser
+use Urling\Core\Part;
+
+final class HostParser extends Part
 {
     // code here
 }

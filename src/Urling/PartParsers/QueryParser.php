@@ -2,9 +2,9 @@
 
 namespace Urling\PartParsers;
 
-use Urling\Core\Utilities\Misc\LogicVerifier;
+use Urling\Core\Part;
 
-final class QueryParser extends URLPartParser
+final class QueryParser extends Part
 {
     // code here
 
@@ -53,11 +53,11 @@ final class QueryParser extends URLPartParser
     {
         $params = $this->explode();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
+        if (!$params) {
             return false;
         }
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($names))) {
+        if ($names) {
             foreach ($names as $name) {
                 if (!$this->isParamExist($name)) {
                     return false;
@@ -77,51 +77,56 @@ final class QueryParser extends URLPartParser
     {
         $params = $this->getNameValuePairs();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
+        if (!$params) {
             return false;
         }
 
-        if (is_string(array_keys($params)[0]) && is_string(array_values($params)[0])) {
-            $varification = (!empty($name)) ? array_key_exists($name, $params) : isset($params);
+        if (
+            is_string(array_keys($params)[0])
+            && is_string(array_values($params)[0])
+        ) {
+            $varification = ($name)
+                ? array_key_exists($name, $params)
+                : (bool) $params;
         } else {
-            $varification = (!empty($name)) ? $params[0] === $name : isset($params[0]);
+            $varification = ($name)
+                ? $params[0] === $name
+                : (bool) $params[0];
         }
 
         return $varification;
     }
 
     /**
-     * @return array<string, string|null>|array<int, string|null>|null
+     * @return array<string, string>|array<int, string>
      */
-    public function explode(): ?array
+    public function explode(): array
     {
         $params_string = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($params_string))) {
+        if ($params_string) {
             if (mb_strpos($params_string, "&") !== false) {
                 $params = explode("&", $params_string);
                 $params = array_filter($params, function (string $param) {
-                    return LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($param));
+                    return $param == true;
                 });
             } else {
                 $params = [$params_string]; # ?param=value
             }
         }
 
-        return $params ?? null;
+        return $params ?? [];
     }
 
     /**
-     * @return array<string, string>|array<int, string>|null
+     * @return array<string, string>|array<int, string>
      */
-    public function getNameValuePairs(): ?array
+    public function getNameValuePairs(): array
     {
-        $param_pairs = [];
-
         $params = $this->explode();
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($params))) {
-            return null;
+        if (!$params) {
+            return [];
         }
 
         foreach ($params as $param) {
@@ -136,15 +141,13 @@ final class QueryParser extends URLPartParser
                 $name = preg_replace($filter, "", $name_value_pairs[0]);
                 $value = $name_value_pairs[1];
 
-                if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($name))) {
-                    $param_pairs[$name] = $value;
-                } else {
-                    $param_pairs[] = $value;
-                }
+                (!$name)
+                    ? $param_pairs[$name] = $value
+                    : $param_pairs[] = $value;
             }
         }
 
-        return $param_pairs;
+        return $param_pairs ?? [];
     }
 
     /**

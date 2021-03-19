@@ -1,13 +1,12 @@
 <?php
 
-namespace Urling\PartParsers;
+namespace Urling\Core;
 
 use Urling\Core\Utilities\Editors\BasePartEditor;
-use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
-use Urling\Core\Utilities\Misc\LogicVerifier;
 use Urling\Core\Utilities\PartParsers\Configurator;
+use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
 
-abstract class URLPartParser
+abstract class Part
 {
     use BasePartEditor;
     use IntelliExceptions;
@@ -32,9 +31,7 @@ abstract class URLPartParser
 
     public function exists(): bool
     {
-        return LogicVerifier::verify(
-            fn() => LogicVerifier::isIssetAndNotEmpty($this->value)
-        );
+        return (bool) $this->value;
     }
 
     // public function secure(string $value) : ?string

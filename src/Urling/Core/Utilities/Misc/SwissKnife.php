@@ -15,28 +15,32 @@ trait SwissKnife
     }
 
     /**
-     * @param string $string
-     * @param string $_string
+     * @param string|null $string
+     * @param string|null $_string
      *
      * @return bool
      */
-    public static function isSameStrings(string $string, string $_string): bool
+    public static function isSameStrings(?string $string, ?string $_string): bool
     {
         return !strcmp($string, $_string);
     }
 
     /**
+     * @param string|null $string
+     *
      * @return bool
      */
-    public static function isUppercased(string $string): bool
+    public static function isUppercased(?string $string): bool
     {
         return self::isSameStrings(mb_strtoupper($string), $string);
     }
 
     /**
+     * @param string|null $string
+     *
      * @return bool
      */
-    public static function isLowercased(string $string): bool
+    public static function isLowercased(?string $string): bool
     {
         return self::isSameStrings(mb_strtolower($string), $string);
     }

@@ -25,10 +25,10 @@ trait ParsersRegistrar
     private function registerParsers(): void
     {
         $this->scheme   = new SchemeParser();
-        $this->host     = new HostParser();
-        $this->port     = new PortParser();
         $this->user     = new UserParser();
         $this->pass     = new PassParser();
+        $this->host     = new HostParser();
+        $this->port     = new PortParser();
         $this->path     = new PathParser();
         $this->query    = new QueryParser();
         $this->fragment = new FragmentParser();
