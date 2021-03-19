@@ -106,7 +106,7 @@ final class UrlParser
             $_lexicon = [];
 
             foreach (self::getUrlPartNames() as $url_part_name) {
-                $accessor = $url_part_name."|".$aliases[$url_part_name];
+                $accessor = $url_part_name . "|" . $aliases[$url_part_name];
                 $_lexicon[$accessor] = $lexicon[$url_part_name];
             }
 
