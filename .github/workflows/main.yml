@@ -32,3 +32,6 @@ jobs:
     - name: Run PHPSTAN
       run: composer run-script phpstan
 
+    - name: Run PSALM
+      run: composer run-script psalm
+
