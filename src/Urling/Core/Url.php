@@ -20,7 +20,7 @@ final class Url
 
     public function __construct(string $url = null)
     {
-        $this->origin = trim($url ?: "");
+        $this->origin = trim((string) $url);
         $this->bootstrap();
     }
 
