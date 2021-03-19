@@ -7,7 +7,7 @@ use Closure;
 abstract class LogicVerifier
 {
     /**
-     * Example: LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value))
+     * Example: LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value)).
      *
      * @param Closure $verifier
      *
@@ -15,7 +15,7 @@ abstract class LogicVerifier
      */
     public static function verify(Closure $verifier): bool
     {
-        return $verifier(); # AND / OR verifiers
+        return $verifier(); // AND / OR verifiers
     }
 
     // AND verifiers
@@ -37,7 +37,7 @@ abstract class LogicVerifier
      */
     public static function isNotIssetAndEmpty($context): bool
     {
-        return !isset($context) and empty($context);
+        return ! isset($context) and empty($context);
     }
 
     /**
@@ -47,7 +47,7 @@ abstract class LogicVerifier
      */
     public static function isIssetAndNotEmpty($context): bool
     {
-        return isset($context) and !empty($context);
+        return isset($context) and ! empty($context);
     }
 
     /**
@@ -57,7 +57,7 @@ abstract class LogicVerifier
      */
     public static function isNotIssetAndNotEmpty($context): bool
     {
-        return !isset($context) and !empty($context);
+        return ! isset($context) and ! empty($context);
     }
 
     // OR verifiers
@@ -79,7 +79,7 @@ abstract class LogicVerifier
      */
     public static function isNotIssetOrEmpty($context): bool
     {
-        return !isset($context) or empty($context);
+        return ! isset($context) or empty($context);
     }
 
     /**
@@ -89,7 +89,7 @@ abstract class LogicVerifier
      */
     public static function isIssetAndOrEmpty($context): bool
     {
-        return isset($context) or !empty($context);
+        return isset($context) or ! empty($context);
     }
 
     /**
@@ -99,6 +99,6 @@ abstract class LogicVerifier
      */
     public static function isNotIssetOrNotEmpty($context): bool
     {
-        return !isset($context) or !empty($context);
+        return ! isset($context) or ! empty($context);
     }
 }

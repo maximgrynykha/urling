@@ -9,7 +9,7 @@ class InexistentContextException extends Exception implements ExceptionParserInt
 {
     public string $exception_message;
 
-    public function __construct(string $message = "", int $code = 0, Throwable $previous = null)
+    public function __construct(string $message = '', int $code = 0, Throwable $previous = null)
     {
         $this->exception_message = $message;
 
@@ -21,7 +21,7 @@ class InexistentContextException extends Exception implements ExceptionParserInt
      *
      * @return void
      */
-    public function setCustomExceptionMessage(string $message = ""): void
+    public function setCustomExceptionMessage(string $message = ''): void
     {
         $this->exception_message = $message;
     }

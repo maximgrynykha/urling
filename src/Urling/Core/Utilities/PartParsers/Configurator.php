@@ -2,10 +2,10 @@
 
 namespace Urling\Core\Utilities\PartParsers;
 
-use Urling\PartParsers\URLPartParser;
-use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\GluingsStorage;
 use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
+use Urling\Core\Utilities\PartParsers\Storages\GluingsStorage;
+use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
+use Urling\PartParsers\URLPartParser;
 
 trait Configurator
 {

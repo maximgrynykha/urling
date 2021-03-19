@@ -2,14 +2,13 @@
 
 namespace Urling\Core\Utilities\PartParsers\Registrars;
 
-use Urling\PartParsers\SchemeParser;
+use Urling\PartParsers\FragmentParser;
 use Urling\PartParsers\HostParser;
-use Urling\PartParsers\UserParser;
 use Urling\PartParsers\PassParser;
 use Urling\PartParsers\PathParser;
 use Urling\PartParsers\QueryParser;
-use Urling\PartParsers\FragmentParser;
-use Urling\PartParsers\PortParser;
+use Urling\PartParsers\SchemeParser;
+use Urling\PartParsers\UserParser;
 
 trait AliasesRegistrar
 {
@@ -25,14 +24,14 @@ trait AliasesRegistrar
 
     private function registerAliases(): void
     {
-        $this->protocol   = $this->scheme;
-        $this->hostname   = $this->host;
-        $this->domain     = $this->host;
-        $this->username   = $this->user;
-        $this->password   = $this->pass;
-        $this->routes     = $this->path;
-        $this->params     = $this->query;
+        $this->protocol = $this->scheme;
+        $this->hostname = $this->host;
+        $this->domain = $this->host;
+        $this->username = $this->user;
+        $this->password = $this->pass;
+        $this->routes = $this->path;
+        $this->params = $this->query;
         $this->attributes = $this->query;
-        $this->anchor     = $this->fragment;
+        $this->anchor = $this->fragment;
     }
 }

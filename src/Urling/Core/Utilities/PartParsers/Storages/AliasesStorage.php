@@ -11,7 +11,7 @@ abstract class AliasesStorage
      *
      * @return string
      */
-    public static function getAliases(string $namespace = ""): string
+    public static function getAliases(string $namespace = ''): string
     {
         return self::aliases()[$namespace];
     }
@@ -35,11 +35,11 @@ abstract class AliasesStorage
 
         $accessor = current(array_filter(
             $all_aliases,
-            fn(string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
+            fn (string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
         ));
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($accessor))) {
-            throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
+        if (LogicVerifier::verify(fn () => LogicVerifier::isNotIssetOrEmpty($accessor))) {
+            throw new \Exception('You try to access to the value of the nonexistent part of the URL!');
         }
 
         return array_flip(self::aliases())[$accessor];
@@ -51,14 +51,14 @@ abstract class AliasesStorage
     protected static function aliases(): array
     {
         return [
-            NamespacesStorage::$scheme   => "protocol",
-            NamespacesStorage::$host     => "hostname|domain",
-            NamespacesStorage::$port     => "",
-            NamespacesStorage::$user     => "username",
-            NamespacesStorage::$pass     => "password",
-            NamespacesStorage::$path     => "routes",
-            NamespacesStorage::$query    => "params|attributes",
-            NamespacesStorage::$fragment => "anchor",
+            NamespacesStorage::$scheme   => 'protocol',
+            NamespacesStorage::$host     => 'hostname|domain',
+            NamespacesStorage::$port     => '',
+            NamespacesStorage::$user     => 'username',
+            NamespacesStorage::$pass     => 'password',
+            NamespacesStorage::$path     => 'routes',
+            NamespacesStorage::$query    => 'params|attributes',
+            NamespacesStorage::$fragment => 'anchor',
         ];
     }
 }

@@ -28,14 +28,14 @@ abstract class GluingsStorage
     protected static function gluings(): array
     {
         return [
-            NamespacesStorage::$scheme   => "://",
-            NamespacesStorage::$user     => "",
-            NamespacesStorage::$pass     => ":",
-            NamespacesStorage::$host     => "",
-            NamespacesStorage::$port     => ":",
-            NamespacesStorage::$path     => "/",
-            NamespacesStorage::$query    => "?",
-            NamespacesStorage::$fragment => "#",
+            NamespacesStorage::$scheme   => '://',
+            NamespacesStorage::$user     => '',
+            NamespacesStorage::$pass     => ':',
+            NamespacesStorage::$host     => '',
+            NamespacesStorage::$port     => ':',
+            NamespacesStorage::$path     => '/',
+            NamespacesStorage::$query    => '?',
+            NamespacesStorage::$fragment => '#',
         ];
     }
 }

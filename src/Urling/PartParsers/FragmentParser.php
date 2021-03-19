@@ -6,7 +6,7 @@ final class FragmentParser extends URLPartParser
 {
     // code here
 
-    public function createSlug(string $string, string $separator = " ", string $connector = "-"): string
+    public function createSlug(string $string, string $separator = ' ', string $connector = '-'): string
     {
         // Contains only letters in unicode and "$connector"
         $prepared_string = preg_replace("/\PL{$connector}+|[^a-zA-Z]/u", $separator, $string);

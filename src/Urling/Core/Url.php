@@ -4,11 +4,11 @@ namespace Urling\Core;
 
 use Urling\Core\Utilities\Editors\BaseUrlEditor;
 use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
-use Urling\Core\Utilities\UrlParser;
 use Urling\Core\Utilities\Misc\LogicVerifier;
 use Urling\Core\Utilities\Misc\SwissKnife;
 use Urling\Core\Utilities\PartParsers\Registrars\AliasesRegistrar;
 use Urling\Core\Utilities\PartParsers\Registrars\ParsersRegistrar;
+use Urling\Core\Utilities\UrlParser;
 
 final class Url
 {
@@ -42,25 +42,25 @@ final class Url
     {
         $origin = $origin ?: $this->origin;
 
-        if (!LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin))) {
+        if (! LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($origin))) {
             return false;
         }
 
         if (($verify_protocols && ($url && $origin))) {
-            $url_protocol = UrlParser::getPartValueFromUrl($url, "protocol");
-            $origin_protocol = UrlParser::getPartValueFromUrl($origin, "protocol");
+            $url_protocol = UrlParser::getPartValueFromUrl($url, 'protocol');
+            $origin_protocol = UrlParser::getPartValueFromUrl($origin, 'protocol');
 
-            if (!SwissKnife::isSameStrings($url_protocol, $origin_protocol)) {
+            if (! SwissKnife::isSameStrings($url_protocol, $origin_protocol)) {
                 return false;
             }
         }
 
-        $url_hostname = UrlParser::getPartValueFromUrl($url, "hostname");
-        $origin_hostname = UrlParser::getPartValueFromUrl($origin, "hostname");
+        $url_hostname = UrlParser::getPartValueFromUrl($url, 'hostname');
+        $origin_hostname = UrlParser::getPartValueFromUrl($origin, 'hostname');
 
         if (
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
+            ! LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
+            ! LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
         ) {
             return false;
         }

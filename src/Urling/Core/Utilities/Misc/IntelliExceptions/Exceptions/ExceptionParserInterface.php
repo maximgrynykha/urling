@@ -12,5 +12,5 @@ interface ExceptionParserInterface
     /**
      * @return void
      */
-    public function setCustomExceptionMessage(string $message = ""): void;
+    public function setCustomExceptionMessage(string $message = ''): void;
 }

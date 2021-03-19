@@ -18,7 +18,7 @@ trait BaseUrlEditor
      */
     public function add(?string $value): ?string
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($this->get()))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($this->get()))) {
             throw new EditException("URL already added. Use 'update'.");
         }
 
@@ -28,7 +28,7 @@ trait BaseUrlEditor
     }
 
     /**
-     * Return current state of URL
+     * Return current state of URL.
      *
      * @param bool $origin
      *
@@ -42,7 +42,7 @@ trait BaseUrlEditor
             $url = null;
         }
 
-        return (!$origin) ? $url : $this->origin;
+        return (! $origin) ? $url : $this->origin;
     }
 
     /**
@@ -76,14 +76,14 @@ trait BaseUrlEditor
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
-        $this->scheme->add($lexicon["scheme"]);
-        $this->host->add($lexicon["host"]);
-        $this->port->add($lexicon["port"]);
-        $this->user->add($lexicon["user"]);
-        $this->pass->add($lexicon["pass"]);
-        $this->path->add($lexicon["path"]);
-        $this->query->add($lexicon["query"]);
-        $this->fragment->add($lexicon["fragment"]);
+        $this->scheme->add($lexicon['scheme']);
+        $this->host->add($lexicon['host']);
+        $this->port->add($lexicon['port']);
+        $this->user->add($lexicon['user']);
+        $this->pass->add($lexicon['pass']);
+        $this->path->add($lexicon['path']);
+        $this->query->add($lexicon['query']);
+        $this->fragment->add($lexicon['fragment']);
     }
 
     /**
@@ -95,14 +95,14 @@ trait BaseUrlEditor
     {
         $lexicon = UrlParser::getPartsFromUrl($url);
 
-        $this->scheme->update($lexicon["scheme"]);
-        $this->host->update($lexicon["host"]);
-        $this->port->update($lexicon["port"]);
-        $this->user->update($lexicon["user"]);
-        $this->pass->update($lexicon["pass"]);
-        $this->path->update($lexicon["path"]);
-        $this->query->update($lexicon["query"]);
-        $this->fragment->update($lexicon["fragment"]);
+        $this->scheme->update($lexicon['scheme']);
+        $this->host->update($lexicon['host']);
+        $this->port->update($lexicon['port']);
+        $this->user->update($lexicon['user']);
+        $this->pass->update($lexicon['pass']);
+        $this->path->update($lexicon['path']);
+        $this->query->update($lexicon['query']);
+        $this->fragment->update($lexicon['fragment']);
     }
 
     /**
@@ -123,7 +123,7 @@ trait BaseUrlEditor
     /**
      * Examples:
      * - $urling->getWithout("protocol");
-     * - $urling->getWithout($url_parser->protocol);
+     * - $urling->getWithout($url_parser->protocol);.
      *
      * @param mixed $url_part
      *
@@ -141,8 +141,8 @@ trait BaseUrlEditor
             $part = get_class($url_part);
         }
 
-        if (!in_array($part, array_keys($url_parts))) {
-            throw new \Exception("You try to get a URL without the nonexistent part of it!");
+        if (! in_array($part, array_keys($url_parts))) {
+            throw new \Exception('You try to get a URL without the nonexistent part of it!');
         }
 
         unset($url_parts[$part]);
@@ -151,7 +151,7 @@ trait BaseUrlEditor
     }
 
     /**
-     * Returns URL string
+     * Returns URL string.
      *
      * @param array<string, string|null> $url_parts
      *
@@ -159,15 +159,15 @@ trait BaseUrlEditor
      */
     protected function getFullUrl(array $url_parts = []): string
     {
-        $full_url = (!empty($url_parts))
-            ? implode("", $url_parts)
-            : implode("", $this->getUrlParts());
+        $full_url = (! empty($url_parts))
+            ? implode('', $url_parts)
+            : implode('', $this->getUrlParts());
 
         return $full_url;
     }
 
     /**
-     * Returns URL part values
+     * Returns URL part values.
      *
      * @return array<string, string|null>
      */
@@ -177,7 +177,7 @@ trait BaseUrlEditor
             $this->scheme->get(true),
             $this->user->get(true),
             ($this->user->get(true))
-                ? $this->pass->get(true) . "@"
+                ? $this->pass->get(true).'@'
                 : $this->pass->get(true),
             $this->host->get(true),
             $this->port->get(true),

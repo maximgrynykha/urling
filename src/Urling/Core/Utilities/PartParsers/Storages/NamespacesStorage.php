@@ -16,46 +16,45 @@ abstract class NamespacesStorage
     /**
      * @var string
      */
-    public static $scheme   = SchemeParser::class;
+    public static $scheme = SchemeParser::class;
 
     /**
      * @var string
      */
-    public static $host     = HostParser::class;
+    public static $host = HostParser::class;
 
     /**
      * @var string
      */
-    public static $port     = PortParser::class;
+    public static $port = PortParser::class;
 
     /**
      * @var string
      */
-    public static $user     = UserParser::class;
+    public static $user = UserParser::class;
 
     /**
      * @var string
      */
-    public static $pass     = PassParser::class;
+    public static $pass = PassParser::class;
 
     /**
      * @var string
      */
-    public static $path     = PathParser::class;
+    public static $path = PathParser::class;
 
     /**
      * @var string
      */
-    public static $query    = QueryParser::class;
+    public static $query = QueryParser::class;
 
     /**
      * @var string
      */
     public static $fragment = FragmentParser::class;
 
-
     /**
-     * Also accepts the name of URL part with concatenated aliases
+     * Also accepts the name of URL part with concatenated aliases.
      *
      * @param string $url_part
      *
@@ -63,27 +62,27 @@ abstract class NamespacesStorage
      */
     public static function getNamespace(string $url_part): ?string
     {
-        $url_part = explode("|", $url_part);
+        $url_part = explode('|', $url_part);
 
         switch ($url_part) {
-            case in_array("scheme", $url_part):
+            case in_array('scheme', $url_part):
                 return self::$scheme;
-            case in_array("host", $url_part):
+            case in_array('host', $url_part):
                 return self::$host;
-            case in_array("port", $url_part):
+            case in_array('port', $url_part):
                 return self::$port;
-            case in_array("user", $url_part):
+            case in_array('user', $url_part):
                 return self::$user;
-            case in_array("pass", $url_part):
+            case in_array('pass', $url_part):
                 return self::$pass;
-            case in_array("path", $url_part):
+            case in_array('path', $url_part):
                 return self::$path;
-            case in_array("query", $url_part):
+            case in_array('query', $url_part):
                 return self::$query;
-            case in_array("fragment", $url_part):
+            case in_array('fragment', $url_part):
                 return self::$fragment;
             default:
-                throw new \Exception("Unsupported URL part!");
+                throw new \Exception('Unsupported URL part!');
         }
     }
 

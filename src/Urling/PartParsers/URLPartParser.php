@@ -24,16 +24,16 @@ abstract class URLPartParser
 
     protected function bootstrap(): void
     {
-        $this->value   = null;
-        $this->name    = Configurator::getName($this);
-        $this->gluing  = Configurator::getGluing($this);
+        $this->value = null;
+        $this->name = Configurator::getName($this);
+        $this->gluing = Configurator::getGluing($this);
         $this->aliases = Configurator::getAliases($this);
     }
 
     public function exists(): bool
     {
         return LogicVerifier::verify(
-            fn() => LogicVerifier::isIssetAndNotEmpty($this->value)
+            fn () => LogicVerifier::isIssetAndNotEmpty($this->value)
         );
     }
 
@@ -41,7 +41,6 @@ abstract class URLPartParser
     // {
         // return htmlspecialchars(trim($value));
     // }
-
 
     // public function decode(string $url) : ?string
     // {
@@ -53,10 +52,8 @@ abstract class URLPartParser
     //     return urlencode($url);
     // }
 
-    # after implementation this function (last two above), need to add tags:
-    #   (php)*-url-decoder, (php)*-url-encoder; to lib-profile on GitHub
-
-
+    // after implementation this function (last two above), need to add tags:
+    //   (php)*-url-decoder, (php)*-url-encoder; to lib-profile on GitHub
 
     /*
         $url_parser->params->exist()

@@ -2,8 +2,8 @@
 
 namespace Urling\Core\Utilities\Misc\IntelliExceptions;
 
-use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\UnsupportedMethodException;
 use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\ExceptionParserInterface;
+use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\UnsupportedMethodException;
 
 trait IntelliExceptions
 {
@@ -17,14 +17,13 @@ trait IntelliExceptions
     {
         $class_methods = get_class_methods(get_class($this));
         $class_methods = array_filter($class_methods, function ($method) {
-            return (
-                mb_strpos($method, "_") === false &&
-                mb_strpos($method, "__") === false
-            );
+            return
+                mb_strpos($method, '_') === false &&
+                mb_strpos($method, '__') === false;
         });
 
         try {
-            if (!array_key_exists($method_name, $class_methods)) {
+            if (! array_key_exists($method_name, $class_methods)) {
                 $exception = new UnsupportedMethodException();
                 $exception
                     ->setSupportedMethodNames($class_methods)

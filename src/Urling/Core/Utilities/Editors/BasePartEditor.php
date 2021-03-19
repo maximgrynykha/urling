@@ -8,7 +8,7 @@ use Urling\Core\Utilities\Misc\LogicVerifier;
 trait BasePartEditor
 {
     /**
-     * Create URL-part and set it value
+     * Create URL-part and set it value.
      *
      * @param string|null $value
      *
@@ -17,7 +17,7 @@ trait BasePartEditor
     public function add(?string $value): ?string
     {
         if (isset($this->value)) {
-            throw new EditException(ucfirst($this->name) . " already added. Use 'update'.");
+            throw new EditException(ucfirst($this->name)." already added. Use 'update'.");
         }
 
         $this->value = $value;
@@ -27,7 +27,7 @@ trait BasePartEditor
     }
 
     /**
-     * Return value of URL-part
+     * Return value of URL-part.
      *
      * @param bool $with_gluing
      *
@@ -39,7 +39,7 @@ trait BasePartEditor
     }
 
     /**
-     * Update value of URL-part
+     * Update value of URL-part.
      *
      * @param string|null $value
      *
@@ -54,7 +54,7 @@ trait BasePartEditor
     }
 
     /**
-     * Delete value of URL-part
+     * Delete value of URL-part.
      *
      * @return string|null
      */
@@ -72,25 +72,25 @@ trait BasePartEditor
      */
     protected function sanitize(?string $value): void
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($value))) {
             switch ($this->name) {
-                case "scheme":
-                    $this->value = preg_replace("#[\:\/]+#iu", "", $value);
+                case 'scheme':
+                    $this->value = preg_replace("#[\:\/]+#iu", '', $value);
                     break;
-                case "pass":
-                    $this->value = preg_replace("#^[\:]+#iu", "", $value);
+                case 'pass':
+                    $this->value = preg_replace("#^[\:]+#iu", '', $value);
                     break;
-                case "port":
-                    $this->value = preg_replace("#^[\:]+#iu", "", $value);
+                case 'port':
+                    $this->value = preg_replace("#^[\:]+#iu", '', $value);
                     break;
-                case "path":
-                    $this->value = preg_replace("#^[\/]+#iu", "", $value);
+                case 'path':
+                    $this->value = preg_replace("#^[\/]+#iu", '', $value);
                     break;
-                case "query":
-                    $this->value = preg_replace("#^[\?]+#iu", "", $value);
+                case 'query':
+                    $this->value = preg_replace("#^[\?]+#iu", '', $value);
                     break;
-                case "fragment":
-                    $this->value = preg_replace("#^[\#]+#iu", "", $value);
+                case 'fragment':
+                    $this->value = preg_replace("#^[\#]+#iu", '', $value);
             }
         }
     }
@@ -102,17 +102,17 @@ trait BasePartEditor
     {
         $value = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($this->value))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($this->value))) {
             switch ($this->name) {
-                case "scheme":
-                    $value = $value . $this->gluing;
+                case 'scheme':
+                    $value = $value.$this->gluing;
                     break;
-                case "pass":
-                case "port":
-                case "path":
-                case "query":
-                case "fragment":
-                    $value = $this->gluing . $this->value;
+                case 'pass':
+                case 'port':
+                case 'path':
+                case 'query':
+                case 'fragment':
+                    $value = $this->gluing.$this->value;
             }
         }
 

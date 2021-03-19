@@ -28,14 +28,14 @@ abstract class NamesStorage
     protected static function names(): array
     {
         return [
-            NamespacesStorage::$scheme   => "scheme",
-            NamespacesStorage::$host     => "host",
-            NamespacesStorage::$port     => "port",
-            NamespacesStorage::$user     => "user",
-            NamespacesStorage::$pass     => "pass",
-            NamespacesStorage::$path     => "path",
-            NamespacesStorage::$query    => "query",
-            NamespacesStorage::$fragment => "fragment",
+            NamespacesStorage::$scheme   => 'scheme',
+            NamespacesStorage::$host     => 'host',
+            NamespacesStorage::$port     => 'port',
+            NamespacesStorage::$user     => 'user',
+            NamespacesStorage::$pass     => 'pass',
+            NamespacesStorage::$path     => 'path',
+            NamespacesStorage::$query    => 'query',
+            NamespacesStorage::$fragment => 'fragment',
         ];
     }
 }
