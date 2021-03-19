@@ -2,7 +2,6 @@
 
 namespace Urling\Core\Utilities;
 
-use Urling\Core\Utilities\Misc\LogicVerifier;
 use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
 use Urling\Core\Utilities\PartParsers\Storages\NamespacesStorage;
 use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
@@ -13,18 +12,18 @@ final class UrlParser
     /**
      * Creates lexicon
      *
-     * @param string $url
+     * @param string|null $url
      *
      * @return array<string, string|null>
      */
-    private static function createLexicon(string $url): array
+    private static function createLexicon(?string $url): array
     {
         $lexicon = [
             "scheme"   => self::getScheme($url),
-            "host"     => self::getHost($url),
-            "port"     => self::getPort($url),
             "user"     => self::getUser($url),
             "pass"     => self::getPass($url),
+            "host"     => self::getHost($url),
+            "port"     => self::getPort($url),
             "path"     => self::getPath($url),
             "query"    => self::getQuery($url),
             "fragment" => self::getFragment($url),
@@ -37,30 +36,32 @@ final class UrlParser
      * Returns value of a part of URL from lexicon
      * (*optional: returns value of URL part from new lexicon genereted for url if passed*)
      *
-     * @param string $url
+     * @param string|null $url
      * @param string $url_part_name
      * @param bool $with_gluing
      *
      * @return string|null
      */
-    public static function getPartValueFromUrl(string $url, string $url_part_name, bool $with_gluing = false): ?string
+    public static function getPartValueFromUrl(?string $url, string $url_part_name, bool $with_gluing = false): ?string
     {
-        if (!self::searchUrlPart($url_part_name)) {
-            throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
+        if ($url) {
+            if (!self::searchUrlPart($url_part_name)) {
+                throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
+            }
+
+            $lexicon_with_aliases = self::getPartsFromUrlWithAliases($url, $with_gluing);
+
+            $accessor = current(array_filter(
+                array_keys($lexicon_with_aliases),
+                fn(string $aliases) => mb_strpos($aliases, $url_part_name) !== false
+            ));
+
+            if (!$accessor) {
+                throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
+            }
+
+            $value = $lexicon_with_aliases[$accessor];
         }
-
-        $lexicon_with_aliases = self::getPartsFromUrlWithAliases($url, $with_gluing);
-
-        $accessor = current(array_filter(
-            array_keys($lexicon_with_aliases),
-            fn(string $aliases) => mb_strpos($aliases, $url_part_name) !== false
-        ));
-
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNullOrEmpty($accessor))) {
-            throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
-        }
-
-        $value = $lexicon_with_aliases[$accessor];
 
         return $value ?? null;
     }
@@ -69,44 +70,56 @@ final class UrlParser
      * Returns array of URL part values (with name for each value) in url
      * (*optional return array of URL part values from new lexicon generated for url if passed*)
      *
-     * @param string $url
+     * @param string|null $url
      * @param bool $with_gluings
      *
      * @return array<string, string|null>
      */
-    public static function getPartsFromUrl(string $url, bool $with_gluings = false): array
+    public static function getPartsFromUrl(?string $url, bool $with_gluings = false): array
     {
-        $lexicon = self::createLexicon($url);
+        if ($url) {
+            $lexicon = self::createLexicon($url);
 
-        return (!$with_gluings) ? $lexicon : self::getPartsWithGluings($lexicon);
+            $parts = ($with_gluings)
+                ? self::getPartsWithGluings($lexicon)
+                : $lexicon;
+        }
+
+        return $parts ?? [];
     }
 
     /**
      * Returns array of URL part values (with name and aliasee for each value) in url
      * (*optional return array of URL part values from new lexicon generated for url if passed*)
      *
-     * @param string $url
+     * @param string|null $url
      * @param bool $with_gluings
      *
      * @return array<string, string|null>
      */
-    public static function getPartsFromUrlWithAliases(string $url, bool $with_gluings = false): array
+    public static function getPartsFromUrlWithAliases(?string $url, bool $with_gluings = false): array
     {
-        $lexicon = self::createLexicon($url);
-        $aliases = self::getAliases();
+        if ($url) {
+            $lexicon = self::createLexicon($url);
+            $aliases = self::getAliases();
 
-        $lexicon = [
-            "scheme|" . $aliases["scheme"]     => $lexicon["scheme"],
-            "host|" . $aliases["host"]         => $lexicon["host"],
-            "port|" . $aliases["port"]         => $lexicon["port"],
-            "user|" . $aliases["user"]         => $lexicon["user"],
-            "pass|" . $aliases["pass"]         => $lexicon["pass"],
-            "path|" . $aliases["path"]         => $lexicon["path"],
-            "query|" . $aliases["query"]       => $lexicon["query"],
-            "fragment|" . $aliases["fragment"] => $lexicon["fragment"],
-        ];
+            $lexicon = [
+                "scheme|" . $aliases["scheme"]     => $lexicon["scheme"],
+                "user|" . $aliases["user"]         => $lexicon["user"],
+                "pass|" . $aliases["pass"]         => $lexicon["pass"],
+                "host|" . $aliases["host"]         => $lexicon["host"],
+                "port|" . $aliases["port"]         => $lexicon["port"],
+                "path|" . $aliases["path"]         => $lexicon["path"],
+                "query|" . $aliases["query"]       => $lexicon["query"],
+                "fragment|" . $aliases["fragment"] => $lexicon["fragment"],
+            ];
 
-        return (!$with_gluings) ? $lexicon : self::getPartsWithGluings($lexicon);
+            $parts_with_aliases = ($with_gluings)
+                ? self::getPartsWithGluings($lexicon)
+                : $lexicon;
+        }
+
+        return $parts_with_aliases ?? [];
     }
 
     /**
@@ -140,10 +153,10 @@ final class UrlParser
     {
         return [
             "scheme"   => AliasesStorage::getAliases(NamespacesStorage::getNamespace("scheme")),
-            "host"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("host")),
-            "port"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("port")),
             "user"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("user")),
             "pass"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("pass")),
+            "host"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("host")),
+            "port"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("port")),
             "path"     => AliasesStorage::getAliases(NamespacesStorage::getNamespace("path")),
             "query"    => AliasesStorage::getAliases(NamespacesStorage::getNamespace("query")),
             "fragment" => AliasesStorage::getAliases(NamespacesStorage::getNamespace("fragment")),
@@ -192,125 +205,99 @@ final class UrlParser
     }
 
     /**
-     * @param string $url
-     *
-     * @return string|null
+     * @return array<int, string>
      */
-    public static function getScheme(string $url): ?string
+    public static function getUrlPartNames(): array
     {
-        $scheme = parse_url($url, PHP_URL_SCHEME);
-
-        if ($scheme === false || $scheme === null) {
-            $scheme = null;
-        }
-
-        return $scheme;
+        return [
+            "scheme",
+            "user",
+            "pass",
+            "host",
+            "port",
+            "path",
+            "query",
+            "fragment"
+        ];
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getHost(string $url): ?string
+    public static function getScheme(?string $url): ?string
     {
-        $host = parse_url($url, PHP_URL_SCHEME);
-
-        if ($host === false || $host === null) {
-            $host = null;
-        }
-
-        return $host;
+        return ($url) ? (parse_url($url, PHP_URL_SCHEME) ?: null) : null;
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getPort(string $url): ?string
+    public static function getUser(?string $url): ?string
     {
-        $port = parse_url($url, PHP_URL_SCHEME);
-
-        if ($port === false || $port === null) {
-            $port = null;
-        }
-
-        return $port;
+        return ($url) ? (parse_url($url, PHP_URL_USER) ?: null) : null;
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getUser(string $url): ?string
+    public static function getPass(?string $url): ?string
     {
-        $user = parse_url($url, PHP_URL_SCHEME);
-
-        if ($user === false || $user === null) {
-            $user = null;
-        }
-
-        return $user;
+        return ($url) ? (parse_url($url, PHP_URL_PASS) ?: null) : null;
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getPass(string $url): ?string
+    public static function getHost(?string $url): ?string
     {
-        $pass = parse_url($url, PHP_URL_SCHEME);
-
-        if ($pass === false || $pass === null) {
-            $pass = null;
-        }
-
-        return $pass;
+        return ($url) ? (parse_url($url, PHP_URL_HOST) ?: null) : null;
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getPath(string $url): ?string
+    public static function getPort(?string $url): ?string
     {
-        $path = parse_url($url, PHP_URL_SCHEME);
-
-        if ($path === false || $path === null) {
-            $path = null;
-        }
-
-        return $path;
-    }
-
-    public static function getQuery(string $url): ?string
-    {
-        $query = parse_url($url, PHP_URL_SCHEME);
-
-        if ($query === false || $query === null) {
-            $query = null;
-        }
-
-        return $query;
+        return ($url) ? ((string) parse_url($url, PHP_URL_PORT) ?: null) : null;
     }
 
     /**
-     * @param string $url
+     * @param string|null $url
      *
      * @return string|null
      */
-    public static function getFragment(string $url): ?string
+    public static function getPath(?string $url): ?string
     {
-        $fragment = parse_url($url, PHP_URL_SCHEME);
+        return ($url) ? (parse_url($url, PHP_URL_PATH) ?: null) : null;
+    }
 
-        if ($fragment === false || $fragment === null) {
-            $fragment = null;
-        }
+    /**
+     * @param string|null $url
+     *
+     * @return string|null
+     */
+    public static function getQuery(?string $url): ?string
+    {
+        return ($url) ? (parse_url($url, PHP_URL_QUERY) ?: null) : null;
+    }
 
-        return $fragment;
+    /**
+     * @param string|null $url
+     *
+     * @return string|null
+     */
+    public static function getFragment(?string $url): ?string
+    {
+        return ($url) ? (parse_url($url, PHP_URL_FRAGMENT) ?: null) : null;
     }
 }
