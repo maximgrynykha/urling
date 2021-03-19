@@ -2,7 +2,9 @@
 
 namespace Urling\PartParsers;
 
-final class PortParser extends URLPartParser
+use Urling\Core\Part;
+
+final class PortParser extends Part
 {
     // code here
 }
