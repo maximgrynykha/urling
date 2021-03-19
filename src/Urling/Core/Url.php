@@ -42,7 +42,7 @@ final class Url
     {
         $origin = $origin ?: $this->origin;
 
-        if (!LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin))) {
+        if (!LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($origin))) {
             return false;
         }
 
@@ -59,8 +59,8 @@ final class Url
         $origin_hostname = UrlParser::getPartValueFromUrl($origin, "hostname");
 
         if (
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
-            !LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
+            !LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($url_hostname)) ||
+            !LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($origin_hostname))
         ) {
             return false;
         }

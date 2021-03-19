@@ -53,10 +53,10 @@ final class UrlParser
 
         $accessor = current(array_filter(
             array_keys($lexicon_with_aliases),
-            fn(string $aliases) => mb_strpos($aliases, $url_part_name) !== false
+            fn (string $aliases) => mb_strpos($aliases, $url_part_name) !== false
         ));
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($accessor))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isNotIssetOrEmpty($accessor))) {
             throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
         }
 

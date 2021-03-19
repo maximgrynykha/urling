@@ -35,10 +35,10 @@ abstract class AliasesStorage
 
         $accessor = current(array_filter(
             $all_aliases,
-            fn(string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
+            fn (string $aliases_string) => mb_strpos($aliases_string, $alias) !== false
         ));
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isNotIssetOrEmpty($accessor))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isNotIssetOrEmpty($accessor))) {
             throw new \Exception("You try to access to the value of the nonexistent part of the URL!");
         }
 

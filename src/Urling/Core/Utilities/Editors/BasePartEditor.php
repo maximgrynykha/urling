@@ -72,7 +72,7 @@ trait BasePartEditor
      */
     protected function sanitize(?string $value): void
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($value))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($value))) {
             switch ($this->name) {
                 case "scheme":
                     $this->value = preg_replace("#[\:\/]+#iu", "", $value);
@@ -102,7 +102,7 @@ trait BasePartEditor
     {
         $value = $this->value;
 
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($this->value))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($this->value))) {
             switch ($this->name) {
                 case "scheme":
                     $value = $value . $this->gluing;

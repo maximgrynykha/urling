@@ -18,7 +18,7 @@ trait BaseUrlEditor
      */
     public function add(?string $value): ?string
     {
-        if (LogicVerifier::verify(fn() => LogicVerifier::isIssetAndNotEmpty($this->get()))) {
+        if (LogicVerifier::verify(fn () => LogicVerifier::isIssetAndNotEmpty($this->get()))) {
             throw new EditException("URL already added. Use 'update'.");
         }
 
