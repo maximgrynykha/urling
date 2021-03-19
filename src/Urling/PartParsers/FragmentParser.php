@@ -2,20 +2,29 @@
 
 namespace Urling\PartParsers;
 
-final class FragmentParser extends URLPartParser
+use Urling\Core\Part;
+
+final class FragmentParser extends Part
 {
     // code here
 
-    public function createSlug(string $string, string $separator = " ", string $connector = "-"): string
+    /**
+     * @param string $context
+     * @param string $separator
+     * @param string $connector
+     *
+     * @return string
+     */
+    public function createSlug(string $context, string $separator = " ", string $connector = "-"): string
     {
         // Contains only letters in unicode and "$connector"
-        $prepared_string = preg_replace("/\PL{$connector}+|[^a-zA-Z]/u", $separator, $string);
+        $prepared_context = preg_replace("/\PL{$connector}+|[^a-zA-Z]/u", $separator, $context);
 
         // Replace all whitespaces to single whitespace
-        $prepared_string = preg_replace("/\s+/", $separator, mb_strtolower(trim($prepared_string)));
+        $prepared_context = preg_replace("/\s+/", $separator, mb_strtolower(trim((string) $prepared_context)));
 
         // Replace separation between part with connector
-        $slug = str_replace($separator, $connector, mb_strtolower(trim($prepared_string)));
+        $slug = str_replace($separator, $connector, mb_strtolower(trim((string) $prepared_context)));
 
         return $slug;
     }
