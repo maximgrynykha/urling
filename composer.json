@@ -35,7 +35,7 @@
     },
     "autoload-dev": {
         "psr-4": { 
-            "Urling\\": "tests/Urling"
+            "Urling\\Tests\\": "tests/"
         }
     },
     "scripts": {
