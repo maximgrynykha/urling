@@ -59,7 +59,7 @@ trait BaseUrlEditor
     {
         $this->deleteParts();
 
-        return $this->get();
+        return $this->get() ?: null;
     }
 
     /**
