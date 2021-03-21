@@ -39,6 +39,7 @@
         }
     },
     "scripts": {
+        "test": "vendor/bin/phpunit tests",
         "phpstan": "vendor/bin/phpstan analyse"
     },
     "config": {
