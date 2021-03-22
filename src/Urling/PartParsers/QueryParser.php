@@ -141,7 +141,7 @@ final class QueryParser extends Part
                 $name = preg_replace($filter, "", $name_value_pair[0]);
                 $value = $name_value_pair[1];
 
-                (!$name)
+                ($name)
                     ? $param_pairs[$name] = $value
                     : $param_pairs[] = $value;
             }
