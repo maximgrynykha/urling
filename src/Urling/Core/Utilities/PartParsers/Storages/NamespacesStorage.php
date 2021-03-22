@@ -22,7 +22,6 @@ abstract class NamespacesStorage
     public static string $query    = QueryParser::class;
     public static string $fragment = FragmentParser::class;
 
-
     /**
      * Also accepts the name of URL part with concatenated aliases
      *
