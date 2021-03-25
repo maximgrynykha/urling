@@ -8,6 +8,8 @@ use Urling\Core\Utilities\UrlParser;
 use Urling\Core\Utilities\Misc\SwissKnife;
 use Urling\Core\Utilities\PartParsers\Registrars\AliasesRegistrar;
 use Urling\Core\Utilities\PartParsers\Registrars\ParsersRegistrar;
+use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
+use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
 
 final class Url
 {
@@ -28,6 +30,27 @@ final class Url
     {
         $this->registerParsers();
         $this->registerAliases();
+    }
+
+    /**
+     * @param array<string, string|null> $url_parts
+     * 
+     * @return string|null
+     */
+    public function construct(array $url_parts): ?string
+    {
+        $parts = array_keys($url_parts);
+        $values = array_values($url_parts);
+
+        foreach ($parts as $index => $part) {
+            if (!UrlParser::searchUrlPart($part)) {
+                throw new \Exception("Unsupported name or alias for the part of URL: $part!");
+            }
+
+            $this->{$part}->add($values[$index]);
+        }
+
+        return $this->get();
     }
 
     /**
