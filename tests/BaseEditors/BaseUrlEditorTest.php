@@ -34,10 +34,10 @@ final class BaseUrlEditorTest extends BaseTest
     public function testUpdateUrl(): void
     {
         $new_url_to_update = "https://www.microsoft.com/en-us/windows/";
-        
+
         $this->assertSame($new_url_to_update, $this->urling->url->update($new_url_to_update));
     }
-    
+
     /**
      * @return void
      */

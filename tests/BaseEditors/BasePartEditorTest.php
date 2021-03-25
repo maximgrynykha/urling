@@ -284,7 +284,7 @@ final class BasePartEditorTest extends BaseTest
     }
     // ------------------------------------------------------------------
 
-    
+
     // ------------------------------------------------------------------
     // QUERY tests
     // ------------------------------------------------------------------
@@ -374,7 +374,7 @@ final class BasePartEditorTest extends BaseTest
     }
     // ------------------------------------------------------------------
 
-    
+
     // ------------------------------------------------------------------
     // Exceptions tests
     // ------------------------------------------------------------------
@@ -389,7 +389,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'scheme' set in default URL (<delete> test passes above)
         $this->urling->url->scheme->delete();
         $this->urling->url->scheme->add("https");
-        
+
         $this->urling->url->scheme->add("https");
     }
 
@@ -403,7 +403,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'user' set in default URL (<delete> test passes above)
         $this->urling->url->user->delete();
         $this->urling->url->user->add("ismaxim");
-        
+
         $this->urling->url->user->add("ismaxim");
     }
 
@@ -417,7 +417,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'pass' set in default URL (<delete> test passes above)
         $this->urling->url->pass->delete();
         $this->urling->url->pass->add("12345");
-                
+
         $this->urling->url->pass->add("12345");
     }
 
@@ -431,7 +431,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'host' set in default URL (<delete> test passes above)
         $this->urling->url->host->delete();
         $this->urling->url->host->add("github.com");
-                    
+
         $this->urling->url->host->add("giithub.com");
     }
 
@@ -445,7 +445,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'port' set in default URL (<delete> test passes above)
         $this->urling->url->port->delete();
         $this->urling->url->port->add("443");
-                            
+
         $this->urling->url->port->add("443");
     }
 
@@ -459,10 +459,10 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'path' set in default URL (<delete> test passes above)
         $this->urling->url->path->delete();
         $this->urling->url->path->add("ismaxim/urling");
-                            
+
         $this->urling->url->path->add("ismaxim/urling");
     }
-    
+
     /**
      * @return void
      */
@@ -473,7 +473,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'query' set in default URL (<delete> test passes above)
         $this->urling->url->query->delete();
         $this->urling->url->query->add("username=ismaxim&repository=urling");
-                            
+
         $this->urling->url->query->add("username=ismaxim&repository=urling");
     }
 
@@ -487,7 +487,7 @@ final class BasePartEditorTest extends BaseTest
         // Delete currently existing 'query' set in default URL (<delete> test passes above)
         $this->urling->url->fragment->delete();
         $this->urling->url->fragment->add("username=ismaxim&repository=urling");
-                            
+
         $this->urling->url->fragment->add("username=ismaxim&repository=urling");
     }
 }
