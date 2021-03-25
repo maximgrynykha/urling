@@ -6,6 +6,7 @@ use Urling\Core\Exceptions\EditException;
 use Urling\Core\Part;
 use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
 use Urling\Core\Utilities\PartParsers\Storages\NamespacesStorage;
+use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
 use Urling\Core\Utilities\UrlParser;
 
 trait BaseUrlEditor
@@ -95,7 +96,7 @@ trait BaseUrlEditor
      */
     protected function deleteParts(): void
     {
-        $url_parts = UrlParser::getUrlPartNames();
+        $url_parts = NamesStorage::getAllNames();
 
         foreach ($url_parts as $url_part) {
             $this->{$url_part}->delete();
