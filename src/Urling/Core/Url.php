@@ -34,7 +34,7 @@ final class Url
 
     /**
      * @param array<string, string|null> $url_parts
-     * 
+     *
      * @return string|null
      */
     public function construct(array $url_parts): ?string
