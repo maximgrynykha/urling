@@ -35,10 +35,11 @@
     },
     "autoload-dev": {
         "psr-4": { 
-            "Urling\\": "tests/Urling"
+            "Urling\\Tests\\": "tests/"
         }
     },
     "scripts": {
+        "test": "vendor/bin/phpunit tests",
         "phpstan": "vendor/bin/phpstan analyse"
     },
     "config": {

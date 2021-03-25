@@ -130,18 +130,18 @@ final class QueryParser extends Part
         }
 
         foreach ($params as $param) {
-            $name_value_pairs = explode("=", $param);
+            $name_value_pair = explode("=", $param);
 
             // ?param=
-            if (count($name_value_pairs) < 2) {
-                $param_pairs[$name_value_pairs[0]] = "";
+            if (count($name_value_pair) < 2) {
+                $param_pairs[$name_value_pair[0]] = "";
             } else {
                 $filter = "#[^a-z0-9?!]#iu";
 
-                $name = preg_replace($filter, "", $name_value_pairs[0]);
-                $value = $name_value_pairs[1];
+                $name = preg_replace($filter, "", $name_value_pair[0]);
+                $value = $name_value_pair[1];
 
-                (!$name)
+                ($name)
                     ? $param_pairs[$name] = $value
                     : $param_pairs[] = $value;
             }

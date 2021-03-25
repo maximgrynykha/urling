@@ -1,3 +1,11 @@
-/vendor
+# Dirs
 .vscode
+vendor
+test-reports
+
+# Dotfiles
+.phpunit.result.cache
+
+# Regular files
 composer.lock
+phpunit.xml.dist.bak

@@ -64,7 +64,7 @@ trait BasePartEditor
     {
         $this->value = null;
 
-        return $this->get();
+        return $this->get() ?: null;
     }
 
     /**
