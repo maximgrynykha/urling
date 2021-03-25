@@ -24,6 +24,10 @@ final class Url
     {
         $this->origin = trim((string) $url);
         $this->bootstrap();
+
+        if (mb_strlen($url) && !$this->get()) {
+            throw new \Exception("Incorrect URL passed!");
+        }
     }
 
     protected function bootstrap(): void
