@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php">
-    <testsuite name="PartParser">
-        <directory suffix="Test.php">./tests/PartParser</directory>
-    </testsuite>
+
+<phpunit 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	bootstrap="vendor/autoload.php" 
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  	<coverage processUncoveredFiles="true">
+		<include>
+			<!-- <directory suffix=".php">./tests/BaseEditors</directory> -->
+			<!-- <directory suffix=".php">./tests/PartParsers</directory> -->
+			<directory suffix=".php">./src/Urling</directory>
+		</include>
+ 	</coverage>
+  	<testsuites>
+		<testsuite name="PartParsers">
+	  		<directory suffix="Test.php">./tests/PartParsers</directory>
+		</testsuite>
+		<testsuite name="BaseEditors">
+			<directory suffix="Test.php">./tests/BaseEditors</directory>
+		</testsuite>
+  	</testsuites>
 </phpunit>
