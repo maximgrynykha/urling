@@ -105,7 +105,7 @@ final class UrlParser
 
             $_lexicon = [];
 
-            foreach (self::getUrlPartNames() as $url_part_name) {
+            foreach (NamesStorage::getAllNames() as $url_part_name) {
                 $accessor = $url_part_name . "|" . $aliases[$url_part_name];
                 $_lexicon[$accessor] = $lexicon[$url_part_name];
             }
@@ -149,7 +149,7 @@ final class UrlParser
     {
         $aliases = [];
 
-        foreach (self::getUrlPartNames() as $url_part_name) {
+        foreach (NamesStorage::getAllNames() as $url_part_name) {
             $aliases[$url_part_name] = AliasesStorage::getAliases(
                 NamespacesStorage::getNamespace($url_part_name)
             );
@@ -197,23 +197,6 @@ final class UrlParser
         }
 
         return $lexicon;
-    }
-
-    /**
-     * @return array<int, string>
-     */
-    public static function getUrlPartNames(): array
-    {
-        return [
-            "scheme",
-            "user",
-            "pass",
-            "host",
-            "port",
-            "path",
-            "query",
-            "fragment"
-        ];
     }
 
     /**
