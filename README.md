@@ -120,7 +120,7 @@ $urling->url->scheme->... | $urling->url->protocol->... (other parts of url in a
 
 ***
 
-Basically, the <ins>__BaseEditor__ module covers almost every task to *__add, get, update or delete__* the value of any part of URL.</ins> <ins>__BaseEditor__ is "CRUDable" wrapper over the __parse_url()__ function from vanilla PHP</ins> and according to this fact it returns and modifies values in a similar way. <ins>The only difference is the syntax to accessing on parsing workflow.</ins>    
+__Basic Editors__ - [Base editor of URL](https://bit.ly/3vXg0qA) and [Base editor of part of URL](https://bit.ly/3tNXSgZ) cover almost all tasks: *__add, get, update or remove__* URL or values anywhere in it. __Base Editors__ are "CRUDable" wrappers over the __parse_url()__ function from native PHP, and according to this fact, they return and modify values in a similar way. The only significant difference is the syntax of calls when parsing a URL or its parts. 
 
 ```php
 // Working with URL
@@ -152,7 +152,7 @@ $urling->url->scheme->update("smtp"); # returns "smtp"  (state of URL: smtp://gi
 
 ***
 
-If you need to do something like *__add, get, update or delete__* the value of any part of the URL, but it's outside the scope of the base functionality, you can use one of the __BaseEditor__ functions name *__add, get, update or delete__* as a prefix with the name of a specific method as postfix appropriate for your task like:
+If you need to do something like *__add, get, update or delete__* the value of any part of the URL, but it's outside the scope of the base functionality, you can use one of the Base editors functions *__add, get, update or delete__* as a prefix with the name of a specific method as postfix appropriate for your task like:
 
 > (add, get, update, delete) + "SomeFunctionName" for the concrete task.
 
@@ -180,7 +180,7 @@ composer test
 
 ## 🤝 Contributing
 
-If you got a task that doesn't can be solved with this library, please write your own solution, and if you wish to help others who use this library also (or wants to save your solution workable after the new release will arrive at your dependencies) — make a pull-request. We will happy to add your brilliant code to the library!  
+If you have a problem that cannot be solved using this library, please write your solution and if you want to help other developers who also use this library (or if you want to keep your solution working after a new version is released, which will go to package manager dependencies) - create a pull-request. We will be happy to add your excellent code to the library!
 
 🐞 Report any bugs or issues you find on the [GitHub issues](https://github.com/ismaxim/urling/issues).
 
