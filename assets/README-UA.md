@@ -1,11 +1,13 @@
 [![Urling - url parser & constructor](https://raw.githubusercontent.com/ismaxim/urling/master/assets/hero-image.png "Urling")](https://github.com/ismaxim/urling#installation)
 
-<p align="center">
+![Build Status](https://img.shields.io/github/workflow/status/ismaxim/urling/Build?label=build&logo=github&logoColor=white&style=for-the-badge)
+
+<!-- <p align="center">
     <img src="https://img.shields.io/github/workflow/status/ismaxim/urling/Build?label=build&logo=github& logoColor=white&style=for-the-badge" alt="Build Status">
     <img src="https://img.shields.io/codecov/c/github/samsonasik/mezzio-authentication-with-authorization?color=codecov&logo=codecov&style=for-the-badge" alt="Tests Coverage">
     <img src="https://img.shields.io/packagist/l/ismaxim/urling?color=1384C4&style=for-the-badge" alt="Packagist License">
     <img src="https://img.shields.io/packagist/v/laravel/laravel?label=version&style=for-the-badge" alt="Packagist Version">
-</p>
+</p> -->
 
 # __Urling__
 
