@@ -120,9 +120,7 @@ $urling->url->scheme->... | $urling->url->protocol->... (other parts of url in a
 
 ***
 
-Basically, the <ins>__BaseEditor__ module covers almost every task to *__add, get, update or delete__* the value of any part of URL.</ins>  
-<ins>__BaseEditor__ is "CRUDable" wrapper over the __parse_url()__ function from vanilla PHP</ins> and according to this fact  
-it returns and modifies values in a similar way. <ins>The only difference is the syntax to accessing on parsing workflow.</ins>    
+Basically, the <ins>__BaseEditor__ module covers almost every task to *__add, get, update or delete__* the value of any part of URL.</ins> <ins>__BaseEditor__ is "CRUDable" wrapper over the __parse_url()__ function from vanilla PHP</ins> and according to this fact it returns and modifies values in a similar way. <ins>The only difference is the syntax to accessing on parsing workflow.</ins>    
 
 ```php
 // Working with URL
@@ -154,9 +152,7 @@ $urling->url->scheme->update("smtp"); # returns "smtp"  (state of URL: smtp://gi
 
 ***
 
-If you need to do something like *__add, get, update or delete__* the value of any part of the URL,  
-but it's outside the scope of the base functionality, you can use one of the __BaseEditor__ functions name  
-*__add, get, update or delete__* as a prefix with the name of a specific method as postfix appropriate for your task like:
+If you need to do something like *__add, get, update or delete__* the value of any part of the URL, but it's outside the scope of the base functionality, you can use one of the __BaseEditor__ functions name *__add, get, update or delete__* as a prefix with the name of a specific method as postfix appropriate for your task like:
 
 > (add, get, update, delete) + "SomeFunctionName" for the concrete task.
 
@@ -184,18 +180,13 @@ composer test
 
 ## 🤝 Contributing
 
-If you got a task that doesn't can be solved with this library, please write your own solution,  
-and if you wish to help others who use this library also (or wants to save your solution  
-workable after the new release will arrive at your dependencies) — make a pull-request.   
-We will happy to add your brilliant code to the library!  
+If you got a task that doesn't can be solved with this library, please write your own solution, and if you wish to help others who use this library also (or wants to save your solution workable after the new release will arrive at your dependencies) — make a pull-request. We will happy to add your brilliant code to the library!  
 
 🐞 Report any bugs or issues you find on the [GitHub issues](https://github.com/ismaxim/urling/issues).
 
 ### ✨ Creating custom functional
 
-You can extend the functionality of the library with your own code, making edits to solve your problems in the parser classes.  
-There are two types of parser classes the first and the main is [URL parser](https://github.com/ismaxim/urling/blob/master/src/Urling/Core/Url.php), but there are others as well, - [URL parts parsers](https://github.com/ismaxim/urling/tree/master/src/Urling/PartParsers).  
-For each part is separate own parser.
+You can extend the functionality of the library with your own code, making edits to solve your problems in the parser classes. There are two types of parser classes the first and the main is [URL parser](https://github.com/ismaxim/urling/blob/master/src/Urling/Core/Url.php), but there are others as well, - [URL parts parsers](https://github.com/ismaxim/urling/tree/master/src/Urling/PartParsers). For each part is separate own parser.
 
 Using the library or examining docs you can notice the same or similar to this record:
 
@@ -205,9 +196,7 @@ $urling->url->params->get()
 
 This entry might interpret the next way: "Hey, Urling, ask to the part 'params' on the current URL and return it value(this part)".
 
-Basically extending functionality, you will work with a part of the URL almost all times  
-and will processing or get the value for a specific part. To understand how to access to parser for needed part you can look at [ACCESSING TABLE](#accessing-table).  
-You only need to match the [*__url part__*](#url-part) and [*__aliases__*](#aliases) sections with the [*__parser__*](#parser) section, and then go to the desired parser file and write the best code in the world! 
+Basically extending functionality, you will work with a part of the URL almost all times and will processing or get the value for a specific part. To understand how to access to parser for needed part you can look at [ACCESSING TABLE](#accessing-table). You only need to match the [*__url part__*](#url-part) and [*__aliases__*](#aliases) sections with the [*__parser__*](#parser) section, and then go to the desired parser file and write the best code in the world! 
 
 ## 📎 Credits
 - [Maintainer →](https://github.com/ismaxim)
