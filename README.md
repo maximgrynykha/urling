@@ -154,9 +154,9 @@ $urling->url->scheme->update("smtp"); # returns "smtp"  (state of URL: smtp://gi
 
 ***
 
-If you need to do something like [add, get, update, or delete] the value of any part of the URL,  
+If you need to do something like *__add, get, update or delete__* the value of any part of the URL,  
 but it's outside the scope of the base functionality, you can use one of the __BaseEditor__ functions name  
-[add, get, update, or delete] as a prefix with the name of a specific method as postfix appropriate for your task like:
+*__add, get, update or delete__* as a prefix with the name of a specific method as postfix appropriate for your task like:
 
 > (add, get, update, delete) + "SomeFunctionName" for the concrete task.
 
@@ -206,7 +206,7 @@ $urling->url->params->get()
 This entry might interpret the next way: "Hey, Urling, ask to the part 'params' on the current URL and return it value(this part)".
 
 Basically extending functionality, you will work with a part of the URL almost all times  
-and will processing or get the value for a specific part. To understand how to access to parser for needed part you can look at [ACCESSING_TABLE](#accessing-table).  
+and will processing or get the value for a specific part. To understand how to access to parser for needed part you can look at [ACCESSING TABLE](#accessing-table).  
 You only need to match the [*__url part__*](#url-part) and [*__aliases__*](#aliases) sections with the [*__parser__*](#parser) section, and then go to the desired parser file and write the best code in the world! 
 
 ## 📎 Credits
