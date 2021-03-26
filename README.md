@@ -29,7 +29,7 @@ composer require ismaxim/urling
 
 📗 1. Two modes to work with URL: parser mode & constructor mode.  
 📘 2. Accessing to concrete part of URL with using aliases (see [ACCESSING TABLE](#accessing-table), column [Aliases](#aliases)).  
-📙 3. Base editors for processing complete URL and each part separately (see section [Basic usage](https://github.com/ismaxim/urling#basic-usage)).  
+📙 3. Base editors for processing complete URL and each part separately (see section [Basic usage](https://github.com/ismaxim/urling#-basic-usage)).  
 
 ***
 
@@ -94,7 +94,7 @@ print_r($urling->url->get());
 */
 ```
 
-#### 🔑 *__Accessing__*
+#### 🔑 Accessing
 
 ***
 
@@ -116,7 +116,7 @@ $urling->url->scheme->... | $urling->url->protocol->... (other parts of url in a
 | query                         | params, attributes          | [QueryParser](https://bit.ly/3d0VaOu)   |
 | fragment                      | anchor                      | [FragmetParser](https://bit.ly/3tKfI4C) |
 
-#### 👶 *__Basic usage__*
+#### 👶 Basic usage
 
 ***
 
@@ -148,7 +148,7 @@ $urling->url->scheme->update("smtp"); # returns "smtp"  (state of URL: smtp://gi
 // Work with other parts of URL can be done in a similar way.
 ```
 
-#### 🧔 *__Advanced usage__*
+#### 🧔 Advanced usage
 
 ***
 
