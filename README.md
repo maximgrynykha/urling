@@ -1,4 +1,4 @@
-[![Urling - url parser & constructor](https://raw.githubusercontent.com/ismaxim/urling/master/assets/hero-image.png "Urling")](https://github.com/ismaxim/urling#installation)
+[![Urling - url parser & constructor](https://raw.githubusercontent.com/ismaxim/urling/master/assets/hero-image.png "Urling")](https://github.com/ismaxim/urling#%EF%B8%8F-installation)
 
 ![Build Status](https://img.shields.io/github/workflow/status/ismaxim/urling/Build?label=build&logo=github&logoColor=white&style=for-the-badge)
 
