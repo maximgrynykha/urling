@@ -8,4 +8,5 @@ test-reports
 
 # Regular files
 composer.lock
+coverage.xml
 phpunit.xml.dist.bak

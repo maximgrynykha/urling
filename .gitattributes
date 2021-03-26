@@ -26,5 +26,6 @@ assets            export-ignore
 
 # Regular files
 composer.lock     export-ignore
+coverage.xml      export-ignore
 phpunit.xml.dist  export-ignore
 phpstan.neon.dist export-ignore
