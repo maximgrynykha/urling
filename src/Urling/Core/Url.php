@@ -76,7 +76,7 @@ final class Url
             $url_protocol = UrlParser::getPartValueFromUrl($url, "protocol");
             $origin_protocol = UrlParser::getPartValueFromUrl($origin, "protocol");
 
-            if (!Assert::same($url_protocol, $origin_protocol)) {
+            if (!Assert::same((string) $url_protocol, (string) $origin_protocol)) {
                 return false;
             }
         }
@@ -88,6 +88,6 @@ final class Url
             return false;
         }
 
-        return Assert::same($url_hostname, $origin_hostname);
+        return Assert::same((string) $url_hostname, (string) $origin_hostname);
     }
 }
