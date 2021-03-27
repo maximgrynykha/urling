@@ -22,11 +22,15 @@ final class PathParser extends Part
             return false;
         }
 
-        if (is_array($needle) && count($needle)) {
-            return $this->containRoutes($needle);
+        $is_contains = false;
+
+        if (is_array($needle)) {
+            $is_contains = $this->containRoutes($needle);
         } elseif (is_string($needle) && mb_strlen($needle)) {
-            return $this->containRoute($needle);
+            $is_contains = $this->containRoute($needle);
         }
+
+        return $is_contains;
     }
 
     /**
@@ -50,6 +54,11 @@ final class PathParser extends Part
         return $routes ?? null;
     }
 
+    /**
+     * @param array<int, string> $routes
+     * 
+     * @return bool
+     */
     private function containRoutes(array $routes): bool
     {        
         foreach ($routes as $route) {
@@ -61,11 +70,16 @@ final class PathParser extends Part
         return true;
     }
 
+    /**
+     * @param string $route
+     * 
+     * @return bool
+     */
     private function containRoute(string $route): bool
     {
         $routes = $this->explode();
 
-        return in_array($route, $routes);
+        return in_array($route, (array) $routes);
     }
     
     // $url_parser->routes->addRoute();

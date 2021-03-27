@@ -22,11 +22,15 @@ final class QueryParser extends Part
             return false;
         }
 
-        if (is_array($needle) && count($needle)) {
-            return $this->containParams($needle);
+        $is_contains = false;
+
+        if (is_array($needle)) {
+            $is_contains = $this->containParams($needle);
         } elseif (is_string($needle) && mb_strlen($needle)) {
-            return $this->containParam($needle);
+            $is_contains = $this->containParam($needle);
         }
+
+        return $is_contains;
     }
 
     /**
@@ -43,7 +47,7 @@ final class QueryParser extends Part
                     return $param == true;
                 });
             } else {
-                $params = [$params_string]; # ?param=value
+                $params = [$params_string]; # ?param=value or ?param or ?param=
             }
         }
 
@@ -131,7 +135,7 @@ final class QueryParser extends Part
     // $url_parser->params->updateParam(position_in_params = 3, $value = "param_value");
     // $url_parser->params->deleteParam(position_in_params = 3);
 
-        /**
+    /**
      * @param array<int, string> $params
      *
      * @return bool
@@ -148,7 +152,7 @@ final class QueryParser extends Part
     }
 
     /**
-     * @param string $name
+     * @param string $param
      *
      * @return bool
      */
@@ -160,19 +164,21 @@ final class QueryParser extends Part
             return false;
         }
 
+        $is_contains = false;
+
         if (
             is_string(array_keys($params)[0]) 
             && is_string(array_values($params)[0])
         ) {
-            $conclusion = ($param) 
+            $is_contains = ($param) 
                 ? array_key_exists($param, $params) 
-                : isset($params);
+                : (bool) $params;
         } else {
-            $conclusion = ($param) 
+            $is_contains = ($param) 
                 ? $params[0] === $param 
                 : isset($params[0]);
         }
 
-        return $conclusion ?? false;
+        return $is_contains;
     }
 }
