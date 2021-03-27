@@ -38,11 +38,11 @@ final class PathParser extends Part
      * - $urling->url->routes->splice(1);
      *
      * Get one route starting on first segment - "ismaxim"
-     * - $urling->url->routes->splice(1, 1); 
-     * 
+     * - $urling->url->routes->splice(1, 1);
+     *
      * @param int $offset
      * @param int|null $length
-     * 
+     *
      * @return string
      */
     public function splice(int $offset, $length = null): string
