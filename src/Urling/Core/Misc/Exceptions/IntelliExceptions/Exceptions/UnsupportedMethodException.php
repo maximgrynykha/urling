@@ -18,6 +18,7 @@ class UnsupportedMethodException extends Exception implements ExceptionParserInt
     {
         $this->supported_method_names = [];
         $this->unsupported_method_name = "";
+        $this->exception_message = "";
 
         $message = $this->getCustomExceptionMessage();
 
