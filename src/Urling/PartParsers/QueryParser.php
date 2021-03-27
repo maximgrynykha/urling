@@ -9,92 +9,28 @@ final class QueryParser extends Part
     // code here
 
     /**
-     * Универсальная функция для isParamExist / isParamsExists
+     * $urling->params->contains("param_name");
+     * $urling->params->contains(["param_name_1", "param_name_1"]);
      *
-     * @param array<int, string>|string|null $params
-     *
-     * @return bool
-     */
-    public function exists($params = null): bool
-    {
-        if (!isset($params)) {
-            return parent::exists();
-        }
-
-        if (is_array($params) && count($params)) {
-            //
-        } elseif (is_string($params) && mb_strlen($params)) {
-            //
-        }
-
-        return true;
-    }
-
-    // $urling->params->exists();
-    // $urling->params->exists("username");
-    // $urling->params->exists(["username", "project"]);
-
-    /**
-     * @param null $params
+     * @param array<int, string>|string $needle
      *
      * @return bool
      */
-    public function contains($params = null): bool
+    public function contains($needle): bool
     {
-        return true;
-    }
-
-    /**
-     * @param array<int, string> $names
-     *
-     * @return bool
-     */
-    public function isParamsExist(array $names = []): bool
-    {
-        $params = $this->explode();
-
-        if (!$params) {
+        if (!$this->value || !$needle) {
             return false;
         }
 
-        if ($names) {
-            foreach ($names as $name) {
-                if (!$this->isParamExist($name)) {
-                    return false;
-                }
-            }
+        $is_contains = false;
+
+        if (is_array($needle)) {
+            $is_contains = $this->containParams($needle);
+        } elseif (is_string($needle) && mb_strlen($needle)) {
+            $is_contains = $this->containParam($needle);
         }
 
-        return true;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return bool
-     */
-    public function isParamExist(string $name = ""): bool
-    {
-        $params = $this->getNameValuePairs();
-
-        if (!$params) {
-            return false;
-        }
-
-        if (
-            is_string(array_keys($params)[0])
-            && is_string(array_values($params)[0])
-        ) {
-            $varification = ($name)
-                ? array_key_exists($name, $params)
-                : (bool) $params;
-        } else {
-            $varification = ($name)
-                ? $params[0] === $name
-                : (bool) $params[0];
-        }
-
-        return $varification;
+        return $is_contains;
     }
 
     /**
@@ -111,7 +47,7 @@ final class QueryParser extends Part
                     return $param == true;
                 });
             } else {
-                $params = [$params_string]; # ?param=value
+                $params = [$params_string]; # ?param=value or ?param or ?param=
             }
         }
 
@@ -198,4 +134,51 @@ final class QueryParser extends Part
     // $url_parser->params->getParam($position_in_params = 3);
     // $url_parser->params->updateParam(position_in_params = 3, $value = "param_value");
     // $url_parser->params->deleteParam(position_in_params = 3);
+
+    /**
+     * @param array<int, string> $params
+     *
+     * @return bool
+     */
+    private function containParams(array $params): bool
+    {
+        foreach ($params as $param) {
+            if (!($this->containParam($param))) {
+                throw new \Exception("Inexistent query param: $param!");
+            };
+        }
+
+        return true;
+    }
+
+    /**
+     * @param string $param
+     *
+     * @return bool
+     */
+    private function containParam(string $param): bool
+    {
+        $params = $this->getNameValuePairs();
+
+        if (!$params) {
+            return false;
+        }
+
+        $is_contains = false;
+
+        if (
+            is_string(array_keys($params)[0])
+            && is_string(array_values($params)[0])
+        ) {
+            $is_contains = ($param)
+                ? array_key_exists($param, $params)
+                : (bool) $params;
+        } else {
+            $is_contains = ($param)
+                ? $params[0] === $param
+                : isset($params[0]);
+        }
+
+        return $is_contains;
+    }
 }

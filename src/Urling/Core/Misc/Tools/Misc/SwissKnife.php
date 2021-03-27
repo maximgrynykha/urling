@@ -15,33 +15,23 @@ trait SwissKnife
     }
 
     /**
-     * @param string|null $string
-     * @param string|null $_string
+     * @param string $context
+     * @param string $separator
+     * @param string $connector
      *
-     * @return bool
+     * @return string
      */
-    public static function isSameStrings(?string $string, ?string $_string): bool
+    public static function createSlug(string $context, string $separator = " ", string $connector = "-"): string
     {
-        return !strcmp((string) $string, (string) $_string);
-    }
+        // Contains only letters in unicode and "$connector"
+        $prepared_context = preg_replace("/\PL{$connector}+/iu", $separator, $context);
 
-    /**
-     * @param string|null $string
-     *
-     * @return bool
-     */
-    public static function isUppercased(?string $string): bool
-    {
-        return self::isSameStrings(mb_strtoupper((string) $string), (string) $string);
-    }
+        // Replace all whitespaces to single whitespace
+        $prepared_context = preg_replace("/\s+/", $separator, mb_strtolower(trim((string) $prepared_context)));
 
-    /**
-     * @param string|null $string
-     *
-     * @return bool
-     */
-    public static function isLowercased(?string $string): bool
-    {
-        return self::isSameStrings(mb_strtolower((string) $string), (string) $string);
+        // Replace separation between part with connector
+        $slug = str_replace($separator, $connector, mb_strtolower(trim((string) $prepared_context)));
+
+        return $slug;
     }
 }
