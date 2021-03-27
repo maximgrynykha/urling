@@ -22,7 +22,7 @@ trait SwissKnife
      */
     public static function isSameStrings(?string $string, ?string $_string): bool
     {
-        return !strcmp($string, $_string);
+        return !strcmp((string) $string, (string) $_string);
     }
 
     /**
