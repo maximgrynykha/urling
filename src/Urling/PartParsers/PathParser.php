@@ -34,6 +34,29 @@ final class PathParser extends Part
     }
 
     /**
+     * Get routes after first(1) segment of routes string
+     * - $urling->url->routes->splice(1);
+     *
+     * Get one route starting on first segment - "ismaxim"
+     * - $urling->url->routes->splice(1, 1);
+     *
+     * @param int $offset
+     * @param int|null $length
+     *
+     * @return string
+     */
+    public function splice(int $offset, $length = null): string
+    {
+        $routes = (array) $this->explode();
+
+        $splice = (!$length)
+            ? array_splice($routes, $offset)
+            : array_splice($routes, $offset, $length);
+
+        return implode("/", $splice);
+    }
+
+    /**
      * @return array<string, string|null>|array<int, string|null>|null
      */
     public function explode(): ?array
