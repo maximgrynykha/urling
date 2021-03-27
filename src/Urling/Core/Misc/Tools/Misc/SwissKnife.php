@@ -15,6 +15,17 @@ trait SwissKnife
     }
 
     /**
+     * @param string|null $string
+     * @param string|null $_string
+     *
+     * @return bool
+     */
+    public static function isSameStrings(?string $string, ?string $_string): bool
+    {
+        return !strcmp($string, $_string);
+    }
+
+    /**
      * @param string $context
      * @param string $separator
      * @param string $connector
