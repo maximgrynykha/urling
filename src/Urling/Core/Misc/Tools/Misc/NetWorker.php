@@ -8,7 +8,7 @@ trait NetWorker
 {
     /**
      * @param string $resource
-     * 
+     *
      * @return string|null
      */
     public static function getIp(string $resource): ?string
@@ -20,7 +20,7 @@ trait NetWorker
 
     /**
      * @param string $ip_address
-     * 
+     *
      * @return string|null
      */
     public static function getByIp(string $ip_address): ?string
