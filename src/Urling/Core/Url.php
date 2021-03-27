@@ -2,14 +2,12 @@
 
 namespace Urling\Core;
 
-use Urling\Core\Utilities\Editors\BaseUrlEditor;
-use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
-use Urling\Core\Utilities\UrlParser;
-use Urling\Core\Utilities\Misc\SwissKnife;
-use Urling\Core\Utilities\PartParsers\Registrars\AliasesRegistrar;
-use Urling\Core\Utilities\PartParsers\Registrars\ParsersRegistrar;
-use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
+use Urling\Core\Misc\UrlParser;
+use Urling\Core\Misc\Tools\Misc\SwissKnife;
+use Urling\Core\Misc\BaseEditors\BaseUrlEditor;
+use Urling\Core\Misc\PartParsers\Registrars\AliasesRegistrar;
+use Urling\Core\Misc\PartParsers\Registrars\ParsersRegistrar;
+use Urling\Core\Misc\Exceptions\IntelliExceptions\IntelliExceptions;
 
 final class Url
 {
@@ -30,6 +28,9 @@ final class Url
         }
     }
 
+    /**
+     * @return void
+     */
     protected function bootstrap(): void
     {
         $this->registerParsers();

@@ -1,15 +1,15 @@
 <?php
 
-namespace Urling\Core\Utilities\PartParsers\Storages;
+namespace Urling\Core\Misc\PartParsers\Storages;
 
-use Urling\PartParsers\FragmentParser;
-use Urling\PartParsers\HostParser;
-use Urling\PartParsers\PassParser;
-use Urling\PartParsers\PathParser;
-use Urling\PartParsers\PortParser;
-use Urling\PartParsers\QueryParser;
 use Urling\PartParsers\SchemeParser;
 use Urling\PartParsers\UserParser;
+use Urling\PartParsers\PassParser;
+use Urling\PartParsers\HostParser;
+use Urling\PartParsers\PortParser;
+use Urling\PartParsers\PathParser;
+use Urling\PartParsers\QueryParser;
+use Urling\PartParsers\FragmentParser;
 
 abstract class NamespacesStorage
 {

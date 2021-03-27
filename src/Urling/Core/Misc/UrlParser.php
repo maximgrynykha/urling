@@ -1,11 +1,11 @@
 <?php
 
-namespace Urling\Core\Utilities;
+namespace Urling\Core\Misc;
 
-use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\NamespacesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\GluingsStorage;
+use Urling\Core\Misc\PartParsers\Storages\NamesStorage;
+use Urling\Core\Misc\PartParsers\Storages\AliasesStorage;
+use Urling\Core\Misc\PartParsers\Storages\GluingsStorage;
+use Urling\Core\Misc\PartParsers\Storages\NamespacesStorage;
 
 final class UrlParser
 {

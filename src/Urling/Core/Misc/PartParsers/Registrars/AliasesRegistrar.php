@@ -1,15 +1,15 @@
 <?php
 
-namespace Urling\Core\Utilities\PartParsers\Registrars;
+namespace Urling\Core\Misc\PartParsers\Registrars;
 
 use Urling\PartParsers\SchemeParser;
-use Urling\PartParsers\HostParser;
 use Urling\PartParsers\UserParser;
 use Urling\PartParsers\PassParser;
+use Urling\PartParsers\HostParser;
+use Urling\PartParsers\PortParser;
 use Urling\PartParsers\PathParser;
 use Urling\PartParsers\QueryParser;
 use Urling\PartParsers\FragmentParser;
-use Urling\PartParsers\PortParser;
 
 trait AliasesRegistrar
 {

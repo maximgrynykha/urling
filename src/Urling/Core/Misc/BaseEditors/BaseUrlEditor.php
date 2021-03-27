@@ -1,13 +1,13 @@
 <?php
 
-namespace Urling\Core\Utilities\Editors;
+namespace Urling\Core\Misc\BaseEditors;
 
-use Urling\Core\Exceptions\EditException;
 use Urling\Core\Part;
-use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\NamespacesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
-use Urling\Core\Utilities\UrlParser;
+use Urling\Core\Misc\UrlParser;
+use Urling\Core\Misc\Exceptions\EditException;
+use Urling\Core\Misc\PartParsers\Storages\NamesStorage;
+use Urling\Core\Misc\PartParsers\Storages\AliasesStorage;
+use Urling\Core\Misc\PartParsers\Storages\NamespacesStorage;
 
 trait BaseUrlEditor
 {

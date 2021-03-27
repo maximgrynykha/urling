@@ -1,8 +1,8 @@
 <?php
 
-namespace Urling\Core\Utilities\Editors;
+namespace Urling\Core\Misc\BaseEditors;
 
-use Urling\Core\Exceptions\EditException;
+use Urling\Core\Misc\Exceptions\EditException;
 
 trait BasePartEditor
 {

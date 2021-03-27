@@ -1,11 +1,11 @@
 <?php
 
-namespace Urling\Core\Utilities\PartParsers;
+namespace Urling\Core\Misc\PartParsers;
 
 use Urling\Core\Part;
-use Urling\Core\Utilities\PartParsers\Storages\NamesStorage;
-use Urling\Core\Utilities\PartParsers\Storages\GluingsStorage;
-use Urling\Core\Utilities\PartParsers\Storages\AliasesStorage;
+use Urling\Core\Misc\PartParsers\Storages\NamesStorage;
+use Urling\Core\Misc\PartParsers\Storages\GluingsStorage;
+use Urling\Core\Misc\PartParsers\Storages\AliasesStorage;
 
 trait Configurator
 {

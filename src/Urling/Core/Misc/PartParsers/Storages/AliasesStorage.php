@@ -1,6 +1,6 @@
 <?php
 
-namespace Urling\Core\Utilities\PartParsers\Storages;
+namespace Urling\Core\Misc\PartParsers\Storages;
 
 abstract class AliasesStorage
 {

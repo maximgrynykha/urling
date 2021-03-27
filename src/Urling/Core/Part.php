@@ -2,9 +2,9 @@
 
 namespace Urling\Core;
 
-use Urling\Core\Utilities\Editors\BasePartEditor;
-use Urling\Core\Utilities\PartParsers\Configurator;
-use Urling\Core\Utilities\Misc\IntelliExceptions\IntelliExceptions;
+use Urling\Core\Misc\PartParsers\Configurator;
+use Urling\Core\Misc\BaseEditors\BasePartEditor;
+use Urling\Core\Misc\Exceptions\IntelliExceptions\IntelliExceptions;
 
 abstract class Part
 {
@@ -21,6 +21,9 @@ abstract class Part
         $this->bootstrap();
     }
 
+    /**
+     * @return void
+     */
     protected function bootstrap(): void
     {
         $this->value   = null;
@@ -29,6 +32,9 @@ abstract class Part
         $this->aliases = Configurator::getAliases($this);
     }
 
+    /**
+     * @return bool
+     */
     public function exists(): bool
     {
         return (bool) $this->value;
