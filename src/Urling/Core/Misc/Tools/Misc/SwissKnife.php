@@ -1,6 +1,6 @@
 <?php
 
-namespace Urling\Core\Utilities\Misc;
+namespace Urling\Core\Misc\Tools\Misc;
 
 trait SwissKnife
 {
@@ -11,7 +11,7 @@ trait SwissKnife
      */
     public static function truncateExtraSlashes(string $resource): string
     {
-        return str_replace(':/', '://', trim(preg_replace('/\/+/', '/', $resource), '/'));
+        return str_replace(':/', '://', trim((string) preg_replace('/\/+/', '/', $resource), '/'));
     }
 
     /**
@@ -22,7 +22,7 @@ trait SwissKnife
      */
     public static function isSameStrings(?string $string, ?string $_string): bool
     {
-        return !strcmp($string, $_string);
+        return !strcmp((string) $string, (string) $_string);
     }
 
     /**
@@ -32,7 +32,7 @@ trait SwissKnife
      */
     public static function isUppercased(?string $string): bool
     {
-        return self::isSameStrings(mb_strtoupper($string), $string);
+        return self::isSameStrings(mb_strtoupper((string) $string), (string) $string);
     }
 
     /**
@@ -42,6 +42,6 @@ trait SwissKnife
      */
     public static function isLowercased(?string $string): bool
     {
-        return self::isSameStrings(mb_strtolower($string), $string);
+        return self::isSameStrings(mb_strtolower((string) $string), (string) $string);
     }
 }

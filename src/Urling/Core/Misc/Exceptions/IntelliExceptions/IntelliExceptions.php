@@ -1,9 +1,9 @@
 <?php
 
-namespace Urling\Core\Utilities\Misc\IntelliExceptions;
+namespace Urling\Core\Misc\Exceptions\IntelliExceptions;
 
-use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\UnsupportedMethodException;
-use Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions\ExceptionParserInterface;
+use Urling\Core\Misc\Exceptions\IntelliExceptions\Exceptions\UnsupportedMethodException;
+use Urling\Core\Misc\Exceptions\IntelliExceptions\Exceptions\ExceptionParserInterface;
 
 trait IntelliExceptions
 {

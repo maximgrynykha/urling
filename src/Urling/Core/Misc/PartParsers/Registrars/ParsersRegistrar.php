@@ -1,6 +1,6 @@
 <?php
 
-namespace Urling\Core\Utilities\PartParsers\Registrars;
+namespace Urling\Core\Misc\PartParsers\Registrars;
 
 use Urling\PartParsers\SchemeParser;
 use Urling\PartParsers\HostParser;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Urling\Core\Exceptions;
+namespace Urling\Core\Misc\Exceptions;
 
 use Exception;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Urling\Core\Utilities\Misc\IntelliExceptions\Exceptions;
+namespace Urling\Core\Misc\Exceptions\IntelliExceptions\Exceptions;
 
 use Exception;
 use Throwable;

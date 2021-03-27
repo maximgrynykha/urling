@@ -1,11 +1,11 @@
 <?php
 
-namespace Urling\Core\Utilities\Misc;
+namespace Urling\Core\Misc\Tools\Misc;
 
 /**
  * @deprecated
  */
-abstract class Assertion
+trait Assertion
 {
     // ---------------------------------------------------------
     // AND assertions
