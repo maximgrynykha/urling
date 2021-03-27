@@ -9,28 +9,24 @@ final class PathParser extends Part
     // code here
 
     /**
-     * Универасальная функция для isRouteExist / isRoutesExists
-     * Examples:
-     * - $urling->url->routes->exist("ismaxim");
-     * - $urling->url->routes->exist(["ismaxim", "urling"]);
-     *
-     * @param array<int, string>|string|null $routes
+     * $urling->routes->contains("route_name");
+     * $urling->routes->contains(["route_name_1", "route_name_1"]);
+     * 
+     * @param array<int, string>|string $needle
      *
      * @return bool
      */
-    public function exists($routes = null): bool
+    public function contains($needle): bool
     {
-        if (!isset($routes)) {
-            return parent::exists();
+        if (!$this->value || !$needle) {
+            return false;
         }
 
-        if (is_array($routes) && count($routes)) {
-            //
-        } elseif (is_string($routes) && mb_strlen($routes)) {
-            //
+        if (is_array($needle) && count($needle)) {
+            return $this->containRoutes($needle);
+        } elseif (is_string($needle) && mb_strlen($needle)) {
+            return $this->containRoute($needle);
         }
-
-        return true;
     }
 
     /**
@@ -54,6 +50,24 @@ final class PathParser extends Part
         return $routes ?? null;
     }
 
+    private function containRoutes(array $routes): bool
+    {        
+        foreach ($routes as $route) {
+            if (!($this->containRoute($route))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private function containRoute(string $route): bool
+    {
+        $routes = $this->explode();
+
+        return in_array($route, $routes);
+    }
+    
     // $url_parser->routes->addRoute();
     // $url_parser->routes->getRoute();
     // $url_parser->routes->updateRoute();
