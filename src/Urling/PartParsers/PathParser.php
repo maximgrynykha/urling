@@ -11,7 +11,7 @@ final class PathParser extends Part
     /**
      * $urling->routes->contains("route_name");
      * $urling->routes->contains(["route_name_1", "route_name_1"]);
-     * 
+     *
      * @param array<int, string>|string $needle
      *
      * @return bool
@@ -56,11 +56,11 @@ final class PathParser extends Part
 
     /**
      * @param array<int, string> $routes
-     * 
+     *
      * @return bool
      */
     private function containRoutes(array $routes): bool
-    {        
+    {
         foreach ($routes as $route) {
             if (!($this->containRoute($route))) {
                 return false;
@@ -72,7 +72,7 @@ final class PathParser extends Part
 
     /**
      * @param string $route
-     * 
+     *
      * @return bool
      */
     private function containRoute(string $route): bool
@@ -81,7 +81,7 @@ final class PathParser extends Part
 
         return in_array($route, (array) $routes);
     }
-    
+
     // $url_parser->routes->addRoute();
     // $url_parser->routes->getRoute();
     // $url_parser->routes->updateRoute();

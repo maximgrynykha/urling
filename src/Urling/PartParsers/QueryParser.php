@@ -11,7 +11,7 @@ final class QueryParser extends Part
     /**
      * $urling->params->contains("param_name");
      * $urling->params->contains(["param_name_1", "param_name_1"]);
-     * 
+     *
      * @param array<int, string>|string $needle
      *
      * @return bool
@@ -167,15 +167,15 @@ final class QueryParser extends Part
         $is_contains = false;
 
         if (
-            is_string(array_keys($params)[0]) 
+            is_string(array_keys($params)[0])
             && is_string(array_values($params)[0])
         ) {
-            $is_contains = ($param) 
-                ? array_key_exists($param, $params) 
+            $is_contains = ($param)
+                ? array_key_exists($param, $params)
                 : (bool) $params;
         } else {
-            $is_contains = ($param) 
-                ? $params[0] === $param 
+            $is_contains = ($param)
+                ? $params[0] === $param
                 : isset($params[0]);
         }
 

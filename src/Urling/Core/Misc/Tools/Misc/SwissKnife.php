@@ -44,7 +44,7 @@ trait SwissKnife
     {
         return self::isSameStrings(mb_strtolower((string) $string), (string) $string);
     }
-    
+
     /**
      * @param string $context
      * @param string $separator
