@@ -3,11 +3,12 @@
 namespace Urling\Core;
 
 use Urling\Core\Misc\UrlParser;
-use Urling\Core\Misc\Tools\Misc\SwissKnife;
+use Urling\Core\Misc\Tools\Tools;
 use Urling\Core\Misc\BaseEditors\BaseUrlEditor;
 use Urling\Core\Misc\PartParsers\Registrars\AliasesRegistrar;
 use Urling\Core\Misc\PartParsers\Registrars\ParsersRegistrar;
 use Urling\Core\Misc\Exceptions\IntelliExceptions\IntelliExceptions;
+use Webmozart\Assert\Assert;
 
 final class Url
 {
@@ -75,7 +76,7 @@ final class Url
             $url_protocol = UrlParser::getPartValueFromUrl($url, "protocol");
             $origin_protocol = UrlParser::getPartValueFromUrl($origin, "protocol");
 
-            if (!SwissKnife::isSameStrings($url_protocol, $origin_protocol)) {
+            if (!Assert::same($url_protocol, $origin_protocol)) {
                 return false;
             }
         }
@@ -87,6 +88,6 @@ final class Url
             return false;
         }
 
-        return SwissKnife::isSameStrings($url_hostname, $origin_hostname);
+        return Assert::same($url_hostname, $origin_hostname);
     }
 }
