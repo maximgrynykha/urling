@@ -27,9 +27,9 @@ abstract class Part
     protected function bootstrap(Configuration $configuration): void
     {
         $this->value   = null;
-        $this->name    = $configuration->getName($this);
-        $this->gluing  = $configuration->getGluing($this);
-        $this->aliases = $configuration->getAliases($this);
+        $this->name    = $configuration->getName();
+        $this->gluing  = $configuration->getGluing();
+        $this->aliases = $configuration->getAliases();
     }
 
     /**
