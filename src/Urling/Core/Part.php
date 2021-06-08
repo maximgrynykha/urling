@@ -2,9 +2,9 @@
 
 namespace Urling\Core;
 
-use Urling\Core\Misc\PartParsers\Configurator;
 use Urling\Core\Misc\BaseEditors\BasePartEditor;
 use Urling\Core\Misc\Exceptions\IntelliExceptions\IntelliExceptions;
+use Urling\Core\Misc\PartParsers\Configuration;
 
 abstract class Part
 {
@@ -18,18 +18,18 @@ abstract class Part
 
     public function __construct()
     {
-        $this->bootstrap();
+        $this->bootstrap(new Configuration($this));
     }
 
     /**
      * @return void
      */
-    protected function bootstrap(): void
+    protected function bootstrap(Configuration $configuration): void
     {
         $this->value   = null;
-        $this->name    = Configurator::getName($this);
-        $this->gluing  = Configurator::getGluing($this);
-        $this->aliases = Configurator::getAliases($this);
+        $this->name    = $configuration->getName();
+        $this->gluing  = $configuration->getGluing();
+        $this->aliases = $configuration->getAliases();
     }
 
     /**
