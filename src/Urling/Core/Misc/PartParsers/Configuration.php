@@ -21,7 +21,7 @@ final class Configuration
 
     /**
      * Factory method to get name for specific component of Url
-     * 
+     *
      * @return string
      */
     public function getName(): string
@@ -31,7 +31,7 @@ final class Configuration
 
     /**
      * Factory method to get gluing for specific component of Url
-     * 
+     *
      * @return string
      */
     public function getGluing(): string
@@ -41,7 +41,7 @@ final class Configuration
 
     /**
      * Factory method to get aliases for specific component of Url
-     * 
+     *
      * @return string
      */
     public function getAliases(): string
